@@ -4,27 +4,75 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/back"
     tools:context=".mainMenu">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="75dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <com.google.android.material.appbar.CollapsingToolbarLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:contentScrim="?attr/colorPrimary"
-        app:expandedTitleGravity="top"
-        app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
-    </com.google.android.material.appbar.CollapsingToolbarLayout>
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:textAlignment="center">
 
-    <androidx.appcompat.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        ></androidx.appcompat.widget.Toolbar>
+        <ImageView
+            android:id="@+id/imgArt"
+            android:layout_width="300dp"
+            android:layout_height="325dp"
+            android:layout_marginTop="48dp"
+            android:contentDescription="@string/dfHiArt"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/artTit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/artTit"
+            android:textAlignment="inherit"
+            android:textColor="@color/sec"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/artCre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/artCrea"
+            android:textAlignment="inherit"
+            android:textColor="@color/sec"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/artEsti"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/artEsti"
+            android:textAlignment="inherit"
+            android:textColor="@color/sec"
+            android:textSize="25sp" />
+
+        <Button
+            android:id="@+id/btnChange"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:backgroundTint="@color/thir"
+            android:paddingVertical="10dp"
+            android:text="@string/artChange"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:icon="@drawable/dice"
+            app:iconPadding="0dp"
+            app:iconSize="35dp" />
+
+        <TextView
+            android:id="@+id/artAno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/artAno"
+            android:textAlignment="inherit"
+            android:textColor="@color/sec"
+            android:textSize="25sp" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
