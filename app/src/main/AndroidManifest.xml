@@ -3,6 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.mimuseum">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,6 +18,12 @@
         android:theme="@style/Theme.Mimuseum"
         tools:targetApi="31">
         <activity
+            android:name=".gallery"
+            android:exported="false" />
+        <activity
+            android:name=".addArt"
+            android:exported="false" />
+        <activity
             android:name=".signin"
             android:exported="false" />
         <activity
@@ -21,7 +31,12 @@
             android:exported="false" />
         <activity
             android:name=".mainMenu"
-            android:exported="false" />
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

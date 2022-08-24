@@ -6,17 +6,26 @@
     <string name="artCrea">Artista</string>
     <string name="artEsti">Estilo</string>
     <string name="artAno">Ano</string>
-
     <string name="artChange">Mudar a obra de arte</string>
-    
-    <!--Login-->
+
+    <!--Login e cadastro-->
     <string name="cadTit">Cadastrar</string>
     <string name="logTit">Logar</string>
     <string name="logUsu">Nome de usuário:</string>
     <string name="logPass">Senha</string>
 
+    <!--Adicionar arte-->
+    <string name="addTit">Adicionar uma nova obra de arte</string>
+    <string name="addImgGuide">Insira a URL da imagem que deseja exibir.</string>
+    <string name="addBtn">Adicionar</string>
+
+    <!--Galeria-->
+    <string name="galTit">Minha galeria</string>
+
     <!--Hints-->
+    <string name="htArtSearch">Pesquisar por nome da arte</string>
     <string name="dfHiArt">Nome da arte</string>
     <string name="hiLog">Insira seu nome de usuário</string>
     <string name="hiPass">Insira sua senha</string>
+    <string name="hiGal">Lista de obras de arte salvas</string>
 </resources>

@@ -14,16 +14,28 @@
         android:orientation="vertical"
         android:textAlignment="center">
 
+        <EditText
+            android:id="@+id/artSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/sec"
+            android:ems="10"
+            android:hint="@string/htArtSearch"
+            android:inputType="textPassword"
+            android:minHeight="50dp"
+            android:outlineAmbientShadowColor="#3C0101"
+            android:textSize="25sp" />
+
         <ImageView
             android:id="@+id/imgArt"
             android:layout_width="300dp"
             android:layout_height="325dp"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="20dp"
             android:contentDescription="@string/dfHiArt"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/artTit"
+            android:id="@+id/addTit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
@@ -33,7 +45,7 @@
             android:textSize="30sp" />
 
         <TextView
-            android:id="@+id/artCre"
+            android:id="@+id/addCre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/artCrea"
@@ -42,7 +54,7 @@
             android:textSize="25sp" />
 
         <TextView
-            android:id="@+id/artEsti"
+            android:id="@+id/addEsti"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/artEsti"
@@ -51,7 +63,7 @@
             android:textSize="25sp" />
 
         <TextView
-            android:id="@+id/artAno"
+            android:id="@+id/addAno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/artAno"
