@@ -5,77 +5,82 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/back"
-    tools:context=".mainMenu">
+    tools:context=".login">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_horizontal"
+        android:gravity="center"
         android:orientation="vertical"
-        android:textAlignment="center">
-
-        <ImageView
-            android:id="@+id/imgArt"
-            android:layout_width="300dp"
-            android:layout_height="325dp"
-            android:layout_marginTop="48dp"
-            android:contentDescription="@string/dfHiArt"
-            tools:srcCompat="@tools:sample/avatars" />
+        android:paddingHorizontal="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/artTit"
+            android:id="@+id/logTit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:fontFamily="sans-serif-medium"
-            android:text="@string/artTit"
-            android:textAlignment="inherit"
-            android:textColor="@color/sec"
-            android:textSize="30sp" />
-
-        <TextView
-            android:id="@+id/artCre"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/artCrea"
-            android:textAlignment="inherit"
+            android:text="@string/cadTit"
             android:textColor="@color/sec"
             android:textSize="25sp" />
 
         <TextView
-            android:id="@+id/artEsti"
+            android:id="@+id/logUsu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/artEsti"
-            android:textAlignment="inherit"
+            android:text="@string/logUsu"
             android:textColor="@color/sec"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/logUsuEd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/sec"
+            android:contentDescription="@string/hiLog"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:minHeight="50dp" />
 
         <TextView
-            android:id="@+id/artAno"
+            android:id="@+id/logPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/artAno"
-            android:textAlignment="inherit"
+            android:text="@string/logPass"
             android:textColor="@color/sec"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/logPassEd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/sec"
+            android:contentDescription="@string/hiPass"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:minHeight="50dp"
+            android:outlineAmbientShadowColor="#3C0101" />
 
         <Button
-            android:id="@+id/btnChange"
+            android:id="@+id/btnLog"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:backgroundTint="@color/thir"
             android:paddingVertical="10dp"
-            android:text="@string/artChange"
+            android:text="@string/cadTit"
             android:textAllCaps="false"
             android:textColor="@color/back"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:icon="@drawable/dice"
+            app:icon="@drawable/ic_baseline_create_24"
             app:iconPadding="0dp"
             app:iconSize="35dp"
             app:iconTint="@color/back"
             app:iconTintMode="src_in" />
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

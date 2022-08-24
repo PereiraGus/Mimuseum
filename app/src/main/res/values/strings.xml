@@ -8,7 +8,15 @@
     <string name="artAno">Ano</string>
 
     <string name="artChange">Mudar a obra de arte</string>
+    
+    <!--Login-->
+    <string name="cadTit">Cadastrar</string>
+    <string name="logTit">Logar</string>
+    <string name="logUsu">Nome de usuário:</string>
+    <string name="logPass">Senha</string>
 
     <!--Hints-->
     <string name="dfHiArt">Nome da arte</string>
+    <string name="hiLog">Insira seu nome de usuário</string>
+    <string name="hiPass">Insira sua senha</string>
 </resources>
