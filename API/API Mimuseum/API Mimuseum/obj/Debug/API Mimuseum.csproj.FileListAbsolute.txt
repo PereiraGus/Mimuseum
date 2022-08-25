@@ -83,3 +83,14 @@ C:\Users\3etimds\Documents\GitHub\Mimuseum\API\API Mimuseum\API Mimuseum\obj\Deb
 C:\Users\3etimds\Documents\GitHub\Mimuseum\API\API Mimuseum\API Mimuseum\obj\Debug\API Mimuseum.csproj.CopyComplete
 C:\Users\3etimds\Documents\GitHub\Mimuseum\API\API Mimuseum\API Mimuseum\obj\Debug\API Mimuseum.dll
 C:\Users\3etimds\Documents\GitHub\Mimuseum\API\API Mimuseum\API Mimuseum\obj\Debug\API Mimuseum.pdb
+C:\Users\3etimds\Documents\GitHub\Mimuseum\API\API Mimuseum\API Mimuseum\bin\MySql.Data.dll
+C:\Users\3etimds\Documents\GitHub\Mimuseum\API\API Mimuseum\API Mimuseum\bin\Google.Protobuf.dll
+C:\Users\3etimds\Documents\GitHub\Mimuseum\API\API Mimuseum\API Mimuseum\bin\ZstdNet.dll
+C:\Users\3etimds\Documents\GitHub\Mimuseum\API\API Mimuseum\API Mimuseum\bin\K4os.Compression.LZ4.Streams.dll
+C:\Users\3etimds\Documents\GitHub\Mimuseum\API\API Mimuseum\API Mimuseum\bin\BouncyCastle.Crypto.dll
+C:\Users\3etimds\Documents\GitHub\Mimuseum\API\API Mimuseum\API Mimuseum\bin\Ubiety.Dns.Core.dll
+C:\Users\3etimds\Documents\GitHub\Mimuseum\API\API Mimuseum\API Mimuseum\bin\System.Memory.dll
+C:\Users\3etimds\Documents\GitHub\Mimuseum\API\API Mimuseum\API Mimuseum\bin\System.Buffers.dll
+C:\Users\3etimds\Documents\GitHub\Mimuseum\API\API Mimuseum\API Mimuseum\bin\K4os.Compression.LZ4.dll
+C:\Users\3etimds\Documents\GitHub\Mimuseum\API\API Mimuseum\API Mimuseum\bin\K4os.Hash.xxHash.dll
+C:\Users\3etimds\Documents\GitHub\Mimuseum\API\API Mimuseum\API Mimuseum\bin\MySql.Data.xml
