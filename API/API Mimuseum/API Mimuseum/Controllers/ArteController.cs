@@ -12,11 +12,22 @@ namespace API_Mimuseum.Controllers
 {
     public class ArteController : ApiController
     {
-        MySqlConnection conexao = new MySqlConnection(ConfigurationManager.ConnectionStrings["conexao"].ConnectionString);
-        MySqlCommand comand = new MySqlCommand();
-
-        Arte arte = new Arte();
-        public string GetAllWorksOfArt() { return arte.FetchArte(); } /*
+        [HttpGet]
+        [ActionName("getAll")]
+        public IEnumerable<Arte> GetAllWorksOfArt()
+        {
+            try
+            {
+                Arte arte = new Arte();
+                var res = arte.FetchArte();
+                return res;
+            }
+            catch(Exception ex)
+            {
+                throw new HttpResponseException(HttpStatusCode.Unauthorized); 
+            }
+        }
+        /*
         public Arte GetArtById(int id)
         {
             var arte = artes.FirstOrDefault((p) => p.IDAarte == id);

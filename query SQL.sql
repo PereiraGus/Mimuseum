@@ -21,6 +21,8 @@ insert into tbArt (NomeArte, NomeArtista, AnoArte, EstiloArte, UrlArte) values
 
 ("A Persistência da Memória", "Salvador Dali", 1931, "Pintura a óleo/bronze", "https://cdn.culturagenial.com/imagens/clocks-cke.jpg"),
 
-("Meisje met de parel", "Johannes Vermeer", 1665, "Pintura a óleo", "https://artsandculture.google.com/asset/girl-with-a-pearl-earring/3QFHLJgXCmQm2Q?hl=pt-BR&avm=2");
+("Meisje met de parel", "Johannes Vermeer", 1665, "Pintura a óleo", "https://artsandculture.google.com/asset/girl-with-a-pearl-earring/3QFHLJgXCmQm2Q?hl=pt-BR&avm=2"),
+
+("American Gothic", "Grant Wood", 1930, "Pintura a óleo", "https://artsandculture.google.com/asset/american-gothic/5QEPm0jCc183Aw?hl=pt-BR");
 
 select * from tbArt;

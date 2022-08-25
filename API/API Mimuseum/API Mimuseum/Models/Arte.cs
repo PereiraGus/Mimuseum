@@ -16,19 +16,34 @@ namespace API_Mimuseum.Models
         public string EstiloArte { get; set; } 
         public string UrlArte { get; set; }
 
-        MySqlConnection conexao = new MySqlConnection(ConfigurationManager.ConnectionStrings["conexao"].ConnectionString);
-        MySqlCommand comand = new MySqlCommand();
-
-        public String FetchArte()
+        public Arte() { }
+        public Arte (int iDAarte, string nomeArte, string nomeArtista, int anoArte, string estiloArte, string urlArte)
         {
-            conexao.Open();
-            IEnumerable<Arte> arte = new List<Arte>();
-            comand.CommandText = ("select * from tbArt");
-            string res = comand.ExecuteScalar().ToString();
-            conexao.Close();
-            return res;
+            IDAarte = iDAarte;
+            NomeArte = nomeArte;
+            NomeArtista = nomeArtista;
+            AnoArte = anoArte;
+            EstiloArte = estiloArte;
+            UrlArte = urlArte;
         }
 
+        public List<Arte> FetchArte()
+        {
+            reader = comand.ExecuteReader();
+            List<Arte> arte = new List<Arte>();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    arte.Add(new Arte(int.Parse(reader["IDArte"].ToString()), reader["NomeArte"].ToString(), reader["NomeArtista"].ToString(),
+                        int.Parse(reader["AnoArte"].ToString()), reader["EstiloArte"].ToString(), reader["UrlArte"].ToString()));
+                }
+            }
+            conexao.Close();
+            return arte;
+        }
+
+        /*
         public void InsertArte(Arte arte)
         {
             conexao.Open();
@@ -41,7 +56,6 @@ namespace API_Mimuseum.Models
             comand.Connection = conexao;
             comand.ExecuteNonQuery();
             conexao.Close();
-        }
-
+        }*/
     }
 }
