@@ -4,18 +4,12 @@ using System.Linq;
 using System.Web;
 using MySql.Data.MySqlClient;
 using System.Configuration;
+using API_Mimuseum.Models;
 
 namespace API_Mimuseum.Models
 {
     public class Arte
     {
-        public int IDAarte { get; set; }   
-        public string NomeArte { get; set; }    
-        public string NomeArtista { get; set; } 
-        public int AnoArte { get; set; }    
-        public string EstiloArte { get; set; } 
-        public string UrlArte { get; set; }
-
         public Arte() { }
         public Arte (int iDAarte, string nomeArte, string nomeArtista, int anoArte, string estiloArte, string urlArte)
         {
@@ -26,23 +20,12 @@ namespace API_Mimuseum.Models
             EstiloArte = estiloArte;
             UrlArte = urlArte;
         }
-
-        public List<Arte> FetchArte()
-        {
-            reader = comand.ExecuteReader();
-            List<Arte> arte = new List<Arte>();
-            if (reader.HasRows)
-            {
-                while (reader.Read())
-                {
-                    arte.Add(new Arte(int.Parse(reader["IDArte"].ToString()), reader["NomeArte"].ToString(), reader["NomeArtista"].ToString(),
-                        int.Parse(reader["AnoArte"].ToString()), reader["EstiloArte"].ToString(), reader["UrlArte"].ToString()));
-                }
-            }
-            conexao.Close();
-            return arte;
-        }
-
+        public int IDAarte { get; set; }
+        public string NomeArte { get; set; }
+        public string NomeArtista { get; set; }
+        public int AnoArte { get; set; }
+        public string EstiloArte { get; set; }
+        public string UrlArte { get; set; }
         /*
         public void InsertArte(Arte arte)
         {

@@ -18,8 +18,10 @@ namespace API_Mimuseum.Controllers
         {
             try
             {
+                DatabaseHelper db = new DatabaseHelper();
+                var res = db.FetchArte();
+                db.CloseConnec();
                 Arte arte = new Arte();
-                var res = arte.FetchArte();
                 return res;
             }
             catch(Exception ex)
@@ -28,16 +30,6 @@ namespace API_Mimuseum.Controllers
             }
         }
         /*
-        public Arte GetArtById(int id)
-        {
-            var arte = artes.FirstOrDefault((p) => p.IDAarte == id);
-            if (arte == null)
-            {
-                var asw = new HttpResponseMessage(HttpStatusCode.NotFound);
-                throw new HttpResponseException(asw);
-            }
-            return arte;
-        }
         public IEnumerable<Arte> GetArtsByName(string name)
         {
             var res = artes.Where((p) => p.NomeArte.Contains(name));
