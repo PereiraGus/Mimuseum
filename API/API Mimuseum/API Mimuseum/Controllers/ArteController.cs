@@ -12,28 +12,72 @@ namespace API_Mimuseum.Controllers
 {
     public class ArteController : ApiController
     {
+        DatabaseHelper db = new DatabaseHelper();
+
         [HttpGet]
         [ActionName("getAll")]
         public IEnumerable<Arte> GetAllWorksOfArt()
         {
             try
             {
-                DatabaseHelper db = new DatabaseHelper();
-                var res = db.FetchArte();
+                db.OpenConnec();
+                var res = db.GetAllArts();
                 db.CloseConnec();
                 Arte arte = new Arte();
                 return res;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                throw new HttpResponseException(HttpStatusCode.Unauthorized); 
+                throw new HttpResponseException(HttpStatusCode.Unauthorized);
             }
         }
-        /*
+        [HttpGet]
+        [ActionName("getArtByID")]
+        public Arte GetArtById(int id)
+        {
+            try
+            {
+                db.OpenConnec();
+                var res = db.GetArtById(id);
+                db.CloseConnec();
+                return res;
+            }
+            catch
+            {
+                throw new HttpResponseException(HttpStatusCode.Unauthorized);
+            }
+        }
+        [HttpGet]
+        [ActionName("getArtsByName")]
         public IEnumerable<Arte> GetArtsByName(string name)
         {
-            var res = artes.Where((p) => p.NomeArte.Contains(name));
-            return res;
-        }*/
+            try
+            {
+                db.OpenConnec();
+                var res = db.GetArtsByParameter("NomeArte",name);
+                db.CloseConnec();
+                return res;
+            }
+            catch
+            {
+                throw new HttpResponseException(HttpStatusCode.Unauthorized);
+            }
+        }
+        [HttpGet]
+        [ActionName("getArtsByName")]
+        public IEnumerable<Arte> GetArtsByArtist(string artist)
+        {
+            try
+            {
+                db.OpenConnec();
+                var res = db.GetArtsByParameter("NomeArtista",artist);
+                db.CloseConnec();
+                return res;
+            }
+            catch
+            {
+                throw new HttpResponseException(HttpStatusCode.Unauthorized);
+            }
+        }
     }
 }

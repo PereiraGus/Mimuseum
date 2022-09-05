@@ -8,46 +8,69 @@ namespace API_Mimuseum.Models
 {
     public class DatabaseHelper
     {
-        MySqlConnection conexao = new MySqlConnection("server=localhost" +
+        static MySqlConnection conexao = new MySqlConnection("server=localhost" +
                                             ";Database=mimuseum" +
                                             ";User ID=root" +
-                                            ";Password=12345678;");
-        public DatabaseHelper()
+                                            ";Password=Negocios1.;");
+        MySqlCommand command = new MySqlCommand(null, conexao);
+        public void OpenConnec()
         {
             conexao.Open();
         }
-        public List<Arte> FetchArte()
+        public Arte AssignArt(MySqlDataReader reader)
         {
-            MySqlCommand command = new MySqlCommand("select * from tbArt", conexao);
-            MySqlDataReader reader;
-            reader = command.ExecuteReader();
-            List<Arte> arte = new List<Arte>();
-            if (reader.HasRows)
+            Arte tempArte = new Arte();
+            if (reader.Read())
             {
-                while (reader.Read())
-                {
-                    arte.Add(new Arte(int.Parse(reader["IDArte"].ToString()), reader["NomeArte"].ToString(), reader["NomeArtista"].ToString(),
-                        int.Parse(reader["AnoArte"].ToString()), reader["EstiloArte"].ToString(), reader["UrlArte"].ToString()));
-                }
+                tempArte.IDAarte = int.Parse(reader["IDArte"].ToString());
+                tempArte.NomeArte = reader["NomeArte"].ToString();
+                tempArte.NomeArtista = reader["NomeArtista"].ToString();
+                tempArte.AnoArte = int.Parse(reader["AnoArte"].ToString());
+                tempArte.EstiloArte = reader["EstiloArte"].ToString();
+                tempArte.UrlArte = reader["UrlArte"].ToString();
             }
-            return arte;
+            return tempArte;
+        }
+        public List<Arte> AssignArts(MySqlDataReader reader)
+        {
+            List<Arte> artList = new List<Arte>();
+            while (reader.Read())
+            {
+                Arte tempArte = new Arte();
+                tempArte.IDAarte = int.Parse(reader["IDArte"].ToString());
+                tempArte.NomeArte = reader["NomeArte"].ToString();
+                tempArte.NomeArtista = reader["NomeArtista"].ToString();
+                tempArte.AnoArte = int.Parse(reader["AnoArte"].ToString());
+                tempArte.EstiloArte = reader["EstiloArte"].ToString();
+                tempArte.UrlArte = reader["UrlArte"].ToString();
+                artList.Add(tempArte);
+            }
+            return artList;
+        }
+        public List<Arte> GetAllArts()
+        {
+            command.CommandText = ("select * from tbArt");
+            var reader = command.ExecuteReader();
+            List<Arte> arts = this.AssignArts(reader);
+            return arts;
         }
         public Arte GetArtById(int id)
         {
-            MySqlCommand command = new MySqlCommand("select * from tbArt where IDArte = @id",conexao);
+            command.CommandText = ("select * from tbArt where IDArte = @id");
             command.Parameters.Add("@id",MySqlDbType.Int64).Value=id;
             var reader = command.ExecuteReader();
-            Arte TempArte = new Arte();
-            if (reader.Read())
-            {
-                TempArte.IDAarte = int.Parse(reader["IDArte"].ToString());
-                TempArte.NomeArte = reader["NomeArte"].ToString();
-                TempArte.NomeArtista = reader["NomeArtista"].ToString();
-                TempArte.AnoArte = int.Parse(reader["AnoArte"].ToString());
-                TempArte.EstiloArte = reader["EstiloArte"].ToString();
-                TempArte.UrlArte = reader["UrlArte"].ToString();
-            }
-            return TempArte;
+            Arte res = this.AssignArt(reader);
+            return res;
+        }
+        public IEnumerable<Arte> GetArtsByParameter(string column, string parVal)
+        {
+            string query = "select * from tbArt where placeholder like 'parameter%'";
+            query = query.Replace("parameter", parVal);
+            query = query.Replace("placeholder", column);
+            command.CommandText = query;
+            var reader = command.ExecuteReader();
+            IEnumerable<Arte> res = this.AssignArts(reader);
+            return res;
         }
         public void CloseConnec()
         {
