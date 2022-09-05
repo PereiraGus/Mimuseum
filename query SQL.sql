@@ -26,3 +26,4 @@ insert into tbArt (NomeArte, NomeArtista, AnoArte, EstiloArte, UrlArte) values
 ("American Gothic", "Grant Wood", 1930, "Pintura a óleo", "https://artsandculture.google.com/asset/american-gothic/5QEPm0jCc183Aw?hl=pt-BR");
 
 select * from tbArt;
+select * from tbArt where NomeArte like 'A%';
