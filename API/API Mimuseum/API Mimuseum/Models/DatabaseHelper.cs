@@ -11,7 +11,7 @@ namespace API_Mimuseum.Models
         static MySqlConnection conexao = new MySqlConnection("server=localhost" +
                                             ";Database=mimuseum" +
                                             ";User ID=root" +
-                                            ";Password=Negocios1.;");
+                                            ";Password=12345678;");
         MySqlCommand command = new MySqlCommand(null, conexao);
         public void OpenConnec()
         {
@@ -71,6 +71,18 @@ namespace API_Mimuseum.Models
             var reader = command.ExecuteReader();
             IEnumerable<Arte> res = this.AssignArts(reader);
             return res;
+        }
+        public void PostNewArt(Arte art)
+        {
+            string query =
+                "insert into tbArt (NomeArte,NomeArtista,AnoArte,EstiloArte,UrlArte) values (name, artist, year, style, url);";
+            query = query.Replace("name", art.NomeArte);
+            query = query.Replace("artist", art.NomeArtista);
+            query = query.Replace("year", art.AnoArte.ToString());
+            query = query.Replace("style", art.EstiloArte);
+            query = query.Replace("url", art.UrlArte);
+            command.CommandText = query;
+            var reader = command.ExecuteNonQuery();
         }
         public void CloseConnec()
         {

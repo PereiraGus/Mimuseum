@@ -26,7 +26,7 @@ namespace API_Mimuseum.Controllers
                 Arte arte = new Arte();
                 return res;
             }
-            catch (Exception ex)
+            catch
             {
                 throw new HttpResponseException(HttpStatusCode.Unauthorized);
             }
@@ -64,7 +64,7 @@ namespace API_Mimuseum.Controllers
             }
         }
         [HttpGet]
-        [ActionName("getArtsByName")]
+        [ActionName("getArtsByArtist")]
         public IEnumerable<Arte> GetArtsByArtist(string artist)
         {
             try
@@ -78,6 +78,29 @@ namespace API_Mimuseum.Controllers
             {
                 throw new HttpResponseException(HttpStatusCode.Unauthorized);
             }
+        }
+        [HttpPost]
+        [ActionName("postNewArt")]
+        public HttpResponseMessage PostNewArt([FromBody]Arte art)
+        {
+            var res = new HttpResponseMessage();
+            if(art == null)
+            {
+                res.StatusCode = HttpStatusCode.BadRequest;
+            }
+            else
+            {
+                try
+                {
+                    db.PostNewArt(art);
+                    res.StatusCode = HttpStatusCode.Created;
+                }
+                catch
+                {
+                    res.StatusCode = HttpStatusCode.NotAcceptable;
+                }
+            }
+            return res;
         }
     }
 }
