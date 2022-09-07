@@ -35,16 +35,23 @@ namespace API_Mimuseum.Controllers
         [ActionName("getArtByID")]
         public Arte GetArtById(int id)
         {
-            try
+            if (id == 0)
             {
-                db.OpenConnec();
-                var res = db.GetArtById(id);
-                db.CloseConnec();
-                return res;
+                throw new HttpResponseException(HttpStatusCode.NotFound);
             }
-            catch
+            else
             {
-                throw new HttpResponseException(HttpStatusCode.Unauthorized);
+                try
+                {
+                    db.OpenConnec();
+                    var res = db.GetArtById(id);
+                    db.CloseConnec();
+                    return res;
+                }
+                catch
+                {
+                    throw new HttpResponseException(HttpStatusCode.Unauthorized);
+                }
             }
         }
         [HttpGet]
@@ -79,6 +86,22 @@ namespace API_Mimuseum.Controllers
                 throw new HttpResponseException(HttpStatusCode.Unauthorized);
             }
         }
+        [HttpGet]
+        [ActionName("getArtsByArtist")]
+        public IEnumerable<Arte> GetArtsByStyle(string style)
+        {
+            try
+            {
+                db.OpenConnec();
+                var res = db.GetArtsByParameter("EstiloArte",style);
+                db.CloseConnec();
+                return res;
+            }
+            catch
+            {
+                throw new HttpResponseException(HttpStatusCode.Unauthorized);
+            }
+        }
         [HttpPost]
         [ActionName("postNewArt")]
         public HttpResponseMessage PostNewArt([FromBody]Arte art)
@@ -92,12 +115,73 @@ namespace API_Mimuseum.Controllers
             {
                 try
                 {
+                    db.OpenConnec();
                     db.PostNewArt(art);
                     res.StatusCode = HttpStatusCode.Created;
                 }
                 catch
                 {
                     res.StatusCode = HttpStatusCode.NotAcceptable;
+                }
+                finally
+                {
+                    db.CloseConnec();
+                }
+            }
+            return res;
+        }
+        [HttpPut]
+        [ActionName("alterArt")]
+        public HttpResponseMessage UpdateArt(int id,[FromBody]Arte arte)
+        {
+            var res = new HttpResponseMessage();
+            if (arte == null)
+            {
+                res.StatusCode = HttpStatusCode.NotModified;
+            }
+            else
+            {
+                try
+                {
+                    db.OpenConnec();
+                    db.AlterArt(id, arte);
+                }
+                catch
+                {
+                    res.StatusCode = HttpStatusCode.NotAcceptable;
+                }
+                finally
+                {
+                    db.CloseConnec();
+                    res.StatusCode = HttpStatusCode.Created;
+                }
+            }
+            return res;
+        }
+        [HttpDelete]
+        [ActionName("deleteArt")]
+        public HttpResponseMessage DeleteArt(int id)
+        {
+            var res = new HttpResponseMessage();
+            if(id == 0)
+            {
+                res.StatusCode = HttpStatusCode.NotFound;
+            }
+            else
+            {
+                try
+                {
+                    db.OpenConnec();
+                    db.deleteArt(id);
+                    res.StatusCode = HttpStatusCode.OK;
+                }
+                catch
+                {
+                    res.StatusCode = HttpStatusCode.Forbidden;
+                }
+                finally
+                {
+                    db.CloseConnec();
                 }
             }
             return res;
