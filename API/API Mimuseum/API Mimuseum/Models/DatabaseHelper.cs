@@ -82,7 +82,7 @@ namespace API_Mimuseum.Models
             query = query.Replace("style", art.EstiloArte);
             query = query.Replace("url", art.UrlArte);
             command.CommandText = query;
-            var reader = command.ExecuteNonQuery();
+            var executor = command.ExecuteNonQuery();
         }
         public void AlterArt(int id, Arte art)
         {
@@ -96,14 +96,37 @@ namespace API_Mimuseum.Models
             query = query.Replace("style", art.EstiloArte);
             query = query.Replace("url", art.UrlArte);
             command.CommandText = query;
-            var reader = command.ExecuteNonQuery();
+            var executor = command.ExecuteNonQuery();
         }
-        public void deleteArt(int id)
+        public void DeleteArt(int id)
         {
             string query = "delete from tbArt where IDArte = id;";
             query = query.Replace("id", id.ToString());
             command.CommandText = query;
-            var reader = command.ExecuteNonQuery();
+            var executor = command.ExecuteNonQuery();
+        }
+        public User GetUserByID(int id)
+        {
+            User tempUser = new User();
+            string query = "select * from tbUser where IDUser = id limit 1";
+            query = query.Replace("id", id.ToString());
+            command.CommandText = query;
+            var reader = command.ExecuteReader();
+            if(reader.Read())
+            {
+                tempUser.IDUser = id;
+                tempUser.Username = reader["Username"].ToString();
+                tempUser.PassUser = reader["PassUser"].ToString();
+            }
+            return tempUser;
+        }
+        public void InsertNewUser(User user)
+        {
+            string query = "insert into tbUser (Username, PassUser) values ('user', 'pass')";
+            query = query.Replace("user", user.Username);
+            query = query.Replace("pass", user.PassUser);
+            command.CommandText = query;
+            var executor = command.ExecuteNonQuery();
         }
         public void CloseConnec()
         {

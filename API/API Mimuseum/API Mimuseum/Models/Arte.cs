@@ -26,19 +26,5 @@ namespace API_Mimuseum.Models
         public int AnoArte { get; set; }
         public string EstiloArte { get; set; }
         public string UrlArte { get; set; }
-        /*
-        public void InsertArte(Arte arte)
-        {
-            conexao.Open();
-            comand.CommandText = "call InsertUsuario(@UsuNome, @Login, @Senha);";
-            comand.Parameters.Add("@NomeArte", MySqlDbType.VarChar).Value = arte.NomeArte;
-            comand.Parameters.Add("@NomeArtista", MySqlDbType.VarChar).Value = arte.NomeArtista;
-            comand.Parameters.Add("@AnoArte", MySqlDbType.Int64).Value = arte.AnoArte;
-            comand.Parameters.Add("@EstiloArte", MySqlDbType.VarChar).Value = arte.EstiloArte;
-            comand.Parameters.Add("@UrlArte", MySqlDbType.VarChar).Value = arte.UrlArte;
-            comand.Connection = conexao;
-            comand.ExecuteNonQuery();
-            conexao.Close();
-        }*/
     }
 }

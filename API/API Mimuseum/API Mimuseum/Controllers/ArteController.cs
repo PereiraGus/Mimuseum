@@ -172,8 +172,55 @@ namespace API_Mimuseum.Controllers
                 try
                 {
                     db.OpenConnec();
-                    db.deleteArt(id);
+                    db.DeleteArt(id);
                     res.StatusCode = HttpStatusCode.OK;
+                }
+                catch
+                {
+                    res.StatusCode = HttpStatusCode.Forbidden;
+                }
+                finally
+                {
+                    db.CloseConnec();
+                }
+            }
+            return res;
+        }
+        [HttpGet]
+        [ActionName("getUserByID")]
+        public User GetUserById(int id)
+        {
+            try
+            {
+                db.OpenConnec();
+                var res = db.GetUserByID(id);
+                return res;
+            }
+            catch
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            finally
+            {
+                db.CloseConnec();
+            }
+        }
+        [HttpPost]
+        [ActionName("insertUser")]
+        public HttpResponseMessage PostNewUser([FromBody]User user)
+        {
+            var res = new HttpResponseMessage();
+            if(user == null)
+            {
+                res.StatusCode = HttpStatusCode.BadRequest;
+            }
+            else
+            {
+                try
+                {
+                    db.OpenConnec();
+                    db.InsertNewUser(user);
+                    res.StatusCode = HttpStatusCode.Created;
                 }
                 catch
                 {

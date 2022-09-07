@@ -164,6 +164,7 @@
     </Compile>
     <Compile Include="Models\Arte.cs" />
     <Compile Include="Models\DatabaseHelper.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
