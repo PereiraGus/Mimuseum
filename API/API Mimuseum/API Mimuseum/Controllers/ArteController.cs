@@ -233,5 +233,31 @@ namespace API_Mimuseum.Controllers
             }
             return res;
         }
+        [HttpPost]
+        [ActionName("validateUser")]
+        public bool ValidateUser([FromBody] User user)
+        {
+            if (user == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+            else
+            {
+                try 
+                {
+                    db.OpenConnec();
+                    bool validator = db.ValidadeUser(user);
+                    return validator;
+                }
+                catch
+                {
+                    throw new HttpResponseException(HttpStatusCode.BadRequest);
+                }
+                finally
+                {
+                    db.CloseConnec();
+                }
+            }   
+        }
     }
 }

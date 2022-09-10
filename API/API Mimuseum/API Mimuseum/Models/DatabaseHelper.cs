@@ -57,7 +57,7 @@ namespace API_Mimuseum.Models
         public Arte GetArtById(int id)
         {
             command.CommandText = ("select * from tbArt where IDArte = @id");
-            command.Parameters.Add("@id",MySqlDbType.Int64).Value=id;
+            command.Parameters.Add("@id", MySqlDbType.Int64).Value = id;
             var reader = command.ExecuteReader();
             Arte res = this.AssignArt(reader);
             return res;
@@ -86,7 +86,7 @@ namespace API_Mimuseum.Models
         }
         public void AlterArt(int id, Arte art)
         {
-            string query = 
+            string query =
                 "update tbArt set NomeArte = 'name', NomeArtista = 'artist', AnoArte = year, EstiloArte = 'style', " +
                 "UrlArte = 'url' where IDArte = id ;";
             query = query.Replace("id", id.ToString());
@@ -112,7 +112,7 @@ namespace API_Mimuseum.Models
             query = query.Replace("id", id.ToString());
             command.CommandText = query;
             var reader = command.ExecuteReader();
-            if(reader.Read())
+            if (reader.Read())
             {
                 tempUser.IDUser = id;
                 tempUser.Username = reader["Username"].ToString();
@@ -127,6 +127,22 @@ namespace API_Mimuseum.Models
             query = query.Replace("pass", user.PassUser);
             command.CommandText = query;
             var executor = command.ExecuteNonQuery();
+        }
+        public bool ValidadeUser(User user)
+        {
+            string query = "select * from tbUser where (Username = 'user' AND PassUser = 'pass')";
+            query = query.Replace("user", user.Username);
+            query = query.Replace("pass", user.PassUser);
+            command.CommandText = query;
+            var reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         public void CloseConnec()
         {
