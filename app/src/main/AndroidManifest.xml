@@ -16,6 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Mimuseum"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
             android:name=".gallery"
@@ -31,9 +32,10 @@
             android:exported="false" />
         <activity
             android:name=".mainMenu"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

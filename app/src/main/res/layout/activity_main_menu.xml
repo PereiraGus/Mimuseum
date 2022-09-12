@@ -7,12 +7,29 @@
     android:background="@color/back"
     tools:context=".mainMenu">
 
+    <TextView
+        android:id="@+id/txtError"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="@string/error"
+        android:textAlignment="center"
+        android:textColor="@color/sec"
+        android:textSize="35sp"
+        android:translationZ="10px"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
+        android:id="@+id/artLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:textAlignment="center">
+        android:textAlignment="center"
+        android:visibility="visible">
 
         <EditText
             android:id="@+id/artSearch"
@@ -39,7 +56,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
-            android:text="@string/artTit"
             android:textAlignment="inherit"
             android:textColor="@color/sec"
             android:textSize="30sp" />
@@ -48,7 +64,6 @@
             android:id="@+id/addCre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/artCrea"
             android:textAlignment="inherit"
             android:textColor="@color/sec"
             android:textSize="25sp" />
@@ -57,7 +72,6 @@
             android:id="@+id/addEsti"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/artEsti"
             android:textAlignment="inherit"
             android:textColor="@color/sec"
             android:textSize="25sp" />
@@ -66,7 +80,6 @@
             android:id="@+id/addAno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/artAno"
             android:textAlignment="inherit"
             android:textColor="@color/sec"
             android:textSize="25sp" />
@@ -88,6 +101,7 @@
             app:iconSize="35dp"
             app:iconTint="@color/back"
             app:iconTintMode="src_in" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
