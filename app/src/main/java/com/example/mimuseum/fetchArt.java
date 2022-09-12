@@ -7,10 +7,9 @@ import androidx.annotation.Nullable;
 import androidx.loader.content.AsyncTaskLoader;
 
 public class fetchArt extends AsyncTaskLoader<Bundle> {
-    private String query;
-    fetchArt(Context context, String queryString){
+    Art art = new Art();
+    fetchArt(Context context, Art art){
         super(context);
-        queryString = query;
     }
     @Override
     protected void onStartLoading(){
@@ -20,6 +19,6 @@ public class fetchArt extends AsyncTaskLoader<Bundle> {
     @Nullable
     @Override
     public Bundle loadInBackground() {
-        return networkUtils.accessArts(query);
+        return networkUtils.accessArts(art.IDArte);
     }
 }

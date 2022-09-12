@@ -17,14 +17,14 @@ public class networkUtils {
     String artJSON = null;
     static String url = null;
 
-    static Bundle accessArts(String query)
+    static Bundle accessArts(int id)
     {
         HttpURLConnection connec = null;
         BufferedReader reader = null;
         String artJSON = null;
         try {
             Uri buildURI = Uri.parse(URL_API).buildUpon()
-                    .appendPath(query)
+                    .appendPath(String.valueOf(id))
                     .build();
             URL requestUrl = new URL(buildURI.toString());
             url = buildURI.toString();

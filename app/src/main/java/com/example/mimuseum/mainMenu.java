@@ -13,6 +13,8 @@ import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+
 public class mainMenu extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Bundle> {
 
     private TextView addTit;
@@ -37,32 +39,37 @@ public class mainMenu extends AppCompatActivity implements LoaderManager.LoaderC
         }
     }
 
+    public void fetchArts()
+    {
+        ConnectivityManager checkConnec = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netStts = null;
+        if(netStts != null && netStts.isConnected()){
+            getSupportLoaderManager().restartLoader(0,null,this);
+        }
+    }
+
     @NonNull
     @Override
     public Loader<Bundle> onCreateLoader(int id, @Nullable Bundle args) {
-        return null;
+        Art art = new Art(id);
+        return new fetchArt(this, art);
     }
 
     @Override
     public void onLoadFinished(@NonNull Loader<Bundle> loader, Bundle data) {
+        try{
+            Bundle allData = data;
+            JSONArray artsData = new JSONArray(data.getString())
+        }
+        catch (Exception ex){
+
+        }
 
     }
 
     @Override
     public void onLoaderReset(@NonNull Loader<Bundle> loader) {
 
-    }
-
-    public void fetchArts()
-    {
-        ConnectivityManager checkConnec = (ConnectivityManager)
-                getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netStts = null;
-        if (checkConnec != null){
-            getSupportLoaderManager().restartLoader(0,null,this);
-        }
-        else {
-            //PARA FAZER
-        }
     }
 }
