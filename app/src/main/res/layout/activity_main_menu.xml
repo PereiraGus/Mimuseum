@@ -7,12 +7,32 @@
     android:background="@color/back"
     tools:context=".mainMenu">
 
+    <TextView
+        android:id="@+id/txtError"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="@string/error"
+        android:textAlignment="center"
+        android:textColor="@color/sec"
+        android:textSize="35sp"
+        android:translationZ="10px"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
+        android:id="@+id/artLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:textAlignment="center">
+        android:textAlignment="center"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNav"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="-8dp">
 
         <EditText
             android:id="@+id/artSearch"
@@ -39,7 +59,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
-            android:text="@string/artTit"
             android:textAlignment="inherit"
             android:textColor="@color/sec"
             android:textSize="30sp" />
@@ -48,7 +67,6 @@
             android:id="@+id/addCre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/artCrea"
             android:textAlignment="inherit"
             android:textColor="@color/sec"
             android:textSize="25sp" />
@@ -57,7 +75,6 @@
             android:id="@+id/addEsti"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/artEsti"
             android:textAlignment="inherit"
             android:textColor="@color/sec"
             android:textSize="25sp" />
@@ -66,7 +83,6 @@
             android:id="@+id/addAno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/artAno"
             android:textAlignment="inherit"
             android:textColor="@color/sec"
             android:textSize="25sp" />
@@ -88,6 +104,23 @@
             app:iconSize="35dp"
             app:iconTint="@color/back"
             app:iconTintMode="src_in" />
+
     </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/thir"
+        app:itemIconSize="30dp"
+        app:itemIconTint="@color/back"
+        app:itemPaddingBottom="25dp"
+        app:itemPaddingTop="20dp"
+        app:itemTextColor="@color/back"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
