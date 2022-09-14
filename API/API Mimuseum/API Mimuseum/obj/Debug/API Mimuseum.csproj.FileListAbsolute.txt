@@ -71,6 +71,29 @@ C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\API Mimuseum\obj\Debug\API
 C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\API Mimuseum\obj\Debug\API Mimuseum.csproj.CopyComplete
 C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\API Mimuseum\obj\Debug\API Mimuseum.dll
 C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\API Mimuseum\obj\Debug\API Mimuseum.pdb
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\API Mimuseum\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\API Mimuseum\bin\roslyn\System.AppContext.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\API Mimuseum\bin\roslyn\System.Console.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\API Mimuseum\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\API Mimuseum\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\API Mimuseum\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\API Mimuseum\bin\roslyn\System.Globalization.Calendars.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\API Mimuseum\bin\roslyn\System.IO.Compression.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\API Mimuseum\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\API Mimuseum\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\API Mimuseum\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\API Mimuseum\bin\roslyn\System.Net.Http.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\API Mimuseum\bin\roslyn\System.Net.Sockets.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\API Mimuseum\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\API Mimuseum\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\API Mimuseum\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\API Mimuseum\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\API Mimuseum\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\API Mimuseum\bin\roslyn\System.ValueTuple.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\API Mimuseum\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\API Mimuseum\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\API Mimuseum\bin\roslyn\System.Xml.XPath.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\API Mimuseum\bin\roslyn\System.Xml.XPath.XDocument.dll
 C:\Users\3etimds\Documents\GitHub\Mimuseum\API\API Mimuseum\API Mimuseum\bin\API Mimuseum.dll.config
 C:\Users\3etimds\Documents\GitHub\Mimuseum\API\API Mimuseum\API Mimuseum\bin\API Mimuseum.dll
 C:\Users\3etimds\Documents\GitHub\Mimuseum\API\API Mimuseum\API Mimuseum\bin\API Mimuseum.pdb
@@ -148,7 +171,3 @@ C:\Users\3etimds\Documents\GitHub\Mimuseum\API\API Mimuseum\API Mimuseum\obj\Deb
 C:\Users\3etimds\Documents\GitHub\Mimuseum\API\API Mimuseum\API Mimuseum\obj\Debug\API Mimuseum.csproj.CopyComplete
 C:\Users\3etimds\Documents\GitHub\Mimuseum\API\API Mimuseum\API Mimuseum\obj\Debug\API Mimuseum.dll
 C:\Users\3etimds\Documents\GitHub\Mimuseum\API\API Mimuseum\API Mimuseum\obj\Debug\API Mimuseum.pdb
-C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\API Mimuseum\bin\roslyn\System.Buffers.dll
-C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\API Mimuseum\bin\roslyn\System.Memory.dll
-C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\API Mimuseum\bin\roslyn\System.Numerics.Vectors.dll
-C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\API Mimuseum\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll

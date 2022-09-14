@@ -8,8 +8,6 @@
     <string name="artAno">Ano</string>
     <string name="artChange">Mudar a obra de arte</string>
 
-    <string name="error">Não foi possível carregar os dados solicitados...</string>
-
     <!--Login e cadastro-->
     <string name="cadTit">Cadastrar</string>
     <string name="logTit">Logar</string>
@@ -30,7 +28,4 @@
     <string name="hiLog">Insira seu nome de usuário</string>
     <string name="hiPass">Insira sua senha</string>
     <string name="hiGal">Lista de obras de arte salvas</string>
-    <string name="appwidget_text">EXAMPLE</string>
-    <string name="add_widget">Add widget</string>
-    <string name="app_widget_description">This is an app widget description</string>
 </resources>
