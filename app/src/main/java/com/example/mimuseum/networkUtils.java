@@ -3,6 +3,10 @@ package com.example.mimuseum;
 import android.net.Uri;
 import android.os.Bundle;
 
+import com.jayway.jsonpath.JsonPath;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -67,7 +71,8 @@ public class networkUtils {
         return artInfo;
     }*/
     static Bundle accessArtByID(int id) {
-        String arts = "[\n" +
+        Bundle artInfo = new Bundle();
+        String arts = "'arts': [\n" +
                 "    {\n" +
                 "        \"IDArte\": 1,\n" +
                 "        \"NomeArte\": \"A Grande Onda de Kanagawa\",\n" +
@@ -125,9 +130,14 @@ public class networkUtils {
                 "        \"UrlArte\": \"https://www.comuseum.com/wp-content/uploads/2015/10/qiu-ying_spring-morning-in-the-han-palace_part.jpg\"\n" +
                 "    }\n" +
                 "]";
-        JsonPath
-        Bundle artInfo = new Bundle();
-        artInfo.putString("arts", arts);
+        try {
+            JSONArray artsArray = new JSONArray(arts);
+            arts = JsonPath.(json).get("arts.findAll { arts -> arts.IDArte = 1 }");
+            artInfo.putString("arts", arts);
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
         return artInfo;
     }
 }
