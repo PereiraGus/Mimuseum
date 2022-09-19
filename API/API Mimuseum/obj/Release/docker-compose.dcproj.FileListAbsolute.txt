@@ -1,0 +1,39 @@
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\bin\Release\API Mimuseum.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\bin\Release\System.Web.Optimization.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\bin\Release\System.Web.Mvc.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\bin\Release\System.Web.Http.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\bin\Release\MySql.Data.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\bin\Release\System.Net.Http.Formatting.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\bin\Release\Newtonsoft.Json.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\bin\Release\System.Web.Http.WebHost.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\bin\Release\Microsoft.Web.Infrastructure.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\bin\Release\System.Web.WebPages.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\bin\Release\System.Web.WebPages.Razor.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\bin\Release\System.Web.Razor.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\bin\Release\Google.Protobuf.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\bin\Release\ZstdNet.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\bin\Release\K4os.Compression.LZ4.Streams.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\bin\Release\BouncyCastle.Crypto.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\bin\Release\Ubiety.Dns.Core.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\bin\Release\System.Web.WebPages.Deployment.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\bin\Release\System.Memory.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\bin\Release\System.Buffers.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\bin\Release\K4os.Compression.LZ4.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\bin\Release\K4os.Hash.xxHash.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\bin\Release\System.Numerics.Vectors.dll
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\bin\Release\API Mimuseum.pdb
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\bin\Release\API Mimuseum.dll.config
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\bin\Release\System.Web.Optimization.xml
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\bin\Release\System.Web.Mvc.xml
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\bin\Release\System.Web.Http.xml
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\bin\Release\MySql.Data.xml
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\bin\Release\System.Net.Http.Formatting.xml
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\bin\Release\Newtonsoft.Json.xml
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\bin\Release\System.Web.Http.WebHost.xml
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\bin\Release\System.Web.WebPages.xml
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\bin\Release\System.Web.WebPages.Razor.xml
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\bin\Release\System.Web.Razor.xml
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\bin\Release\System.Web.WebPages.Deployment.xml
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\obj\Release\docker-compose.dcproj.AssemblyReference.cache
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\obj\Release\docker-compose.dcproj.CoreCompileInputs.cache
+C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\obj\Release\docker-compose.dcproj.CopyComplete

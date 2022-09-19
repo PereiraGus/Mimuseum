@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  apimimuseum:
+    image: ${DOCKER_REGISTRY-}apimimuseum
+    build:
+      context: .\API Mimuseum
+      dockerfile: Dockerfile

@@ -22,7 +22,7 @@ namespace API_Mimuseum.Models
             Arte tempArte = new Arte();
             if (reader.Read())
             {
-                tempArte.IDAarte = int.Parse(reader["IDArte"].ToString());
+                tempArte.IDArte = int.Parse(reader["IDArte"].ToString());
                 tempArte.NomeArte = reader["NomeArte"].ToString();
                 tempArte.NomeArtista = reader["NomeArtista"].ToString();
                 tempArte.AnoArte = int.Parse(reader["AnoArte"].ToString());
@@ -37,7 +37,7 @@ namespace API_Mimuseum.Models
             while (reader.Read())
             {
                 Arte tempArte = new Arte();
-                tempArte.IDAarte = int.Parse(reader["IDArte"].ToString());
+                tempArte.IDArte = int.Parse(reader["IDArte"].ToString());
                 tempArte.NomeArte = reader["NomeArte"].ToString();
                 tempArte.NomeArtista = reader["NomeArtista"].ToString();
                 tempArte.AnoArte = int.Parse(reader["AnoArte"].ToString());

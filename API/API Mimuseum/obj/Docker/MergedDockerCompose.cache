@@ -1,0 +1,16 @@
+name: dockercompose12783413355237748479
+services:
+  apimimuseum:
+    build:
+      context: C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\API Mimuseum
+      dockerfile: Dockerfile
+    image: apimimuseum
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 80
+      protocol: tcp
+networks:
+  default:
+    name: dockercompose12783413355237748479_default

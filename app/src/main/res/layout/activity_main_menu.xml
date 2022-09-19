@@ -93,6 +93,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:backgroundTint="@color/thir"
+            android:onClick="refreshArt"
             android:paddingVertical="10dp"
             android:text="@string/artChange"
             android:textAllCaps="false"

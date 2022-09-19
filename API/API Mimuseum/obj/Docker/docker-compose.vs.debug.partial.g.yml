@@ -1,0 +1,20 @@
+version: '3.4'
+
+services:
+  apimimuseum:
+    image: apimimuseum:dev
+    container_name: API_Mimuseum
+    build:
+      args:
+        source: obj/Docker/empty/
+      labels:
+        com.microsoft.created-by: "visual-studio"
+        com.microsoft.visual-studio.project-name: "API Mimuseum"
+    volumes:
+      - C:\Users\Operador\Downloads\Mimuseum\API\API Mimuseum\API Mimuseum:C:\inetpub\wwwroot
+      - :C:\remote_debugger:ro
+    entrypoint: cmd /c "start /B C:\\ServiceMonitor.exe w3svc & C:\\remote_debugger\\x64\\msvsmon.exe /noauth /anyuser /silent /nostatus /noclrwarn /nosecuritywarn /nofirewallwarn /nowowwarn /timeout:2147483646"
+    environment:
+      - DEV_ENVIRONMENT=1
+      - VBCSCOMPILER_TTL=604800
+

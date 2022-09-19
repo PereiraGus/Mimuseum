@@ -13,14 +13,14 @@ namespace API_Mimuseum.Models
         public Arte() { }
         public Arte (int iDAarte, string nomeArte, string nomeArtista, int anoArte, string estiloArte, string urlArte)
         {
-            IDAarte = iDAarte;
+            IDArte = iDAarte;
             NomeArte = nomeArte;
             NomeArtista = nomeArtista;
             AnoArte = anoArte;
             EstiloArte = estiloArte;
             UrlArte = urlArte;
         }
-        public int IDAarte { get; set; }
+        public int IDArte { get; set; }
         public string NomeArte { get; set; }
         public string NomeArtista { get; set; }
         public int AnoArte { get; set; }

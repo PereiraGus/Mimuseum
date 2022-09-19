@@ -11,10 +11,8 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -23,6 +21,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Random;
 
 public class mainMenu extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Bundle>, BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -53,13 +53,16 @@ public class mainMenu extends AppCompatActivity implements LoaderManager.LoaderC
         nav.setSelectedItemId(R.id.mnMain);
         nav.setOnNavigationItemSelectedListener(this);
 
-        /*if(getSupportLoaderManager().getLoader(0) == null){
-            getSupportLoaderManager().initLoader(0,null,this);
-        }*/
-        fetchArts();
+        startFetching();
     }
 
-    public void fetchArts()
+    public void refreshArt(View view)
+    {
+        finish();
+        startActivity(getIntent());
+    }
+
+    public void startFetching()
     {
         ConnectivityManager checkConnec = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -68,7 +71,11 @@ public class mainMenu extends AppCompatActivity implements LoaderManager.LoaderC
             netStts = checkConnec.getActiveNetworkInfo();
         }
         if(netStts != null && netStts.isConnected()){
-            getSupportLoaderManager().restartLoader(0,null,this);
+            Random generator = new Random();
+            int randomID = generator.nextInt(5);
+            Bundle args = new Bundle();
+            args.putInt("id", randomID);
+            getSupportLoaderManager().initLoader(0,args,this);
         }
     }
 
@@ -76,7 +83,7 @@ public class mainMenu extends AppCompatActivity implements LoaderManager.LoaderC
     @Override
     public Loader<Bundle> onCreateLoader(int id, @Nullable Bundle args) {
         Art art = new Art();
-        art.IDArte = 1;
+        art.IDArte = args.getInt("id");
         return new fetchArt(this, art.IDArte);
     }
 
@@ -101,7 +108,7 @@ public class mainMenu extends AppCompatActivity implements LoaderManager.LoaderC
 
                     addTit.setText(art.NomeArte);
                     addCre.setText(art.NomeArtista);
-                    addAno.setText(art.AnoArte);
+                    addAno.setText(Integer.toString(art.AnoArte));
                     addEsti.setText(art.EstiloArte);
                 }
             }
