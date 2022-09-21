@@ -13,6 +13,9 @@ namespace API_Mimuseum.Controllers
     public class ArteController : ApiController
     {
         DatabaseHelper db = new DatabaseHelper();
+        User us = new User();
+        Arte art = new Arte();
+        Like lk = new Like();
 
         [HttpGet]
         [ActionName("getAll")]
@@ -21,14 +24,16 @@ namespace API_Mimuseum.Controllers
             try
             {
                 db.OpenConnec();
-                var res = db.GetAllArts();
-                db.CloseConnec();
-                Arte arte = new Arte();
+                var res = art.GetAllArts();
                 return res;
             }
             catch
             {
                 throw new HttpResponseException(HttpStatusCode.Unauthorized);
+            }
+            finally
+            {
+                db.CloseConnec();
             }
         }
         [HttpGet]
@@ -44,13 +49,16 @@ namespace API_Mimuseum.Controllers
                 try
                 {
                     db.OpenConnec();
-                    var res = db.GetArtById(id);
-                    db.CloseConnec();
+                    var res = art.GetArtById(id);
                     return res;
                 }
                 catch
                 {
                     throw new HttpResponseException(HttpStatusCode.Unauthorized);
+                }
+                finally
+                {
+                    db.CloseConnec();
                 }
             }
         }
@@ -61,7 +69,7 @@ namespace API_Mimuseum.Controllers
             try
             {
                 db.OpenConnec();
-                var res = db.GetArtsByParameter("NomeArte",name);
+                var res = art.GetArtsByParameter("NomeArte",name);
                 db.CloseConnec();
                 return res;
             }
@@ -77,7 +85,7 @@ namespace API_Mimuseum.Controllers
             try
             {
                 db.OpenConnec();
-                var res = db.GetArtsByParameter("NomeArtista",artist);
+                var res = art.GetArtsByParameter("NomeArtista",artist);
                 db.CloseConnec();
                 return res;
             }
@@ -93,7 +101,7 @@ namespace API_Mimuseum.Controllers
             try
             {
                 db.OpenConnec();
-                var res = db.GetArtsByParameter("EstiloArte",style);
+                var res = art.GetArtsByParameter("EstiloArte",style);
                 db.CloseConnec();
                 return res;
             }
@@ -116,7 +124,7 @@ namespace API_Mimuseum.Controllers
                 try
                 {
                     db.OpenConnec();
-                    db.PostNewArt(art);
+                    art.PostNewArt(art);
                     res.StatusCode = HttpStatusCode.Created;
                 }
                 catch
@@ -144,7 +152,7 @@ namespace API_Mimuseum.Controllers
                 try
                 {
                     db.OpenConnec();
-                    db.AlterArt(id, arte);
+                    art.AlterArt(id, arte);
                 }
                 catch
                 {
@@ -172,7 +180,7 @@ namespace API_Mimuseum.Controllers
                 try
                 {
                     db.OpenConnec();
-                    db.DeleteArt(id);
+                    art.DeleteArt(id);
                     res.StatusCode = HttpStatusCode.OK;
                 }
                 catch
@@ -193,7 +201,7 @@ namespace API_Mimuseum.Controllers
             try
             {
                 db.OpenConnec();
-                var res = db.GetUserByID(id);
+                var res = us.GetUserByID(id);
                 return res;
             }
             catch
@@ -219,7 +227,7 @@ namespace API_Mimuseum.Controllers
                 try
                 {
                     db.OpenConnec();
-                    db.InsertNewUser(user);
+                    us.InsertNewUser(user);
                     res.StatusCode = HttpStatusCode.Created;
                 }
                 catch
@@ -246,7 +254,7 @@ namespace API_Mimuseum.Controllers
                 try 
                 {
                     db.OpenConnec();
-                    bool validator = db.ValidadeUser(user);
+                    bool validator = us.ValidadeUser(user);
                     return validator;
                 }
                 catch
@@ -258,6 +266,53 @@ namespace API_Mimuseum.Controllers
                     db.CloseConnec();
                 }
             }   
+        }
+        [HttpPost]
+        [ActionName("likeUnlike")]
+        public HttpResponseMessage LikeUnlike([FromBody] Like like)
+        {
+            var res = new HttpResponseMessage();
+            if (like == null)
+            {
+                res.StatusCode = HttpStatusCode.BadRequest;
+            }
+            else
+            {
+                try
+                {
+                    db.OpenConnec();
+                    lk.likeUnlike(like);
+                    res.StatusCode = HttpStatusCode.OK;
+                }
+                catch
+                {
+                    res.StatusCode = HttpStatusCode.InternalServerError;
+                }
+                finally
+                {
+                    db.CloseConnec();
+                }
+            }
+            return res;
+        }
+        [HttpGet]
+        [ActionName("seeLikesByUserID")]
+        public IEnumerable<Like> seeLikesByUserID(int id)
+        {
+            try
+            {
+                db.OpenConnec();
+                var res = lk.seeLikesByUserID(id);
+                return res;
+            }
+            catch
+            {
+                throw new HttpResponseException(HttpStatusCode.Unauthorized);
+            }
+            finally
+            {
+                db.CloseConnec();
+            }
         }
     }
 }
