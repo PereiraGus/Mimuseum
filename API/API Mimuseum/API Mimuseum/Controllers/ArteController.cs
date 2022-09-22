@@ -314,5 +314,24 @@ namespace API_Mimuseum.Controllers
                 db.CloseConnec();
             }
         }
+        [HttpGet]
+        [ActionName("seeNumOfArts")]
+        public int seeNumOfArts()
+        {
+            try
+            {
+                db.OpenConnec();
+                var res = art.CountArts();
+                return res;
+            }
+            catch
+            {
+                throw new HttpResponseException(HttpStatusCode.Unauthorized);
+            }
+            finally
+            {
+                db.CloseConnec();
+            }
+        }
     }
 }

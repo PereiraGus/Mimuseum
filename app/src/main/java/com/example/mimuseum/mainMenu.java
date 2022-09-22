@@ -10,13 +10,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.DisplayCutout;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,12 +35,19 @@ import java.util.Random;
 
 public class mainMenu extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Bundle>, BottomNavigationView.OnNavigationItemSelectedListener {
 
+    Boolean isSearchByName = null;
+    String query = null;
+
     private LinearLayout infos;
+    private ImageView imgArt;
     private TextView addTit;
     private TextView addCre;
     private TextView addEsti;
     private TextView addAno;
     private TextView txtError;
+    private EditText editSearch;
+
+    DisplayImageOptions options = null;
 
     private BottomNavigationView nav;
 
@@ -42,13 +58,41 @@ public class mainMenu extends AppCompatActivity implements LoaderManager.LoaderC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
+        Intent checkIfSearch = getIntent();
+        isSearchByName = checkIfSearch.getBooleanExtra("searchByName",false);
+        query = checkIfSearch.getStringExtra("query");
+
         infos = (LinearLayout) findViewById(R.id.artLayout);
+        imgArt = (ImageView) findViewById(R.id.imgArt);
         addTit = (TextView) findViewById(R.id.addTit);
         addCre = (TextView) findViewById(R.id.addCre);
         addEsti = (TextView) findViewById(R.id.addEsti);
         addAno = (TextView) findViewById(R.id.addAno);
         txtError = (TextView) findViewById(R.id.txtError);
+        editSearch = (EditText) findViewById(R.id.artSearch);
 
+        editSearch.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    Intent searchByName = new Intent(getApplicationContext(),mainMenu.class);
+                    searchByName.putExtra("searchByName",true);
+                    searchByName.putExtra("query",editSearch.getText());
+                    startActivity(searchByName);
+                }
+                return false;
+            }
+        });
+
+        //https://github.com/nostra13/Android-Universal-Image-Loader
+        ImageLoader imgLoader = ImageLoader.getInstance();
+        imgLoader.init(ImageLoaderConfiguration.createDefault(getApplicationContext()));
+        DisplayImageOptions options = new DisplayImageOptions
+                .Builder()
+                .showStubImage(R.drawable.loading)
+                .showStubImage(R.drawable.unavailable)
+                .cacheInMemory()
+                .build();
         nav = (BottomNavigationView) findViewById(R.id.bottomNav);
         nav.setSelectedItemId(R.id.mnMain);
         nav.setOnNavigationItemSelectedListener(this);
@@ -71,10 +115,7 @@ public class mainMenu extends AppCompatActivity implements LoaderManager.LoaderC
             netStts = checkConnec.getActiveNetworkInfo();
         }
         if(netStts != null && netStts.isConnected()){
-            Random generator = new Random();
-            int randomID = generator.nextInt(5);
             Bundle args = new Bundle();
-            args.putInt("id", randomID);
             getSupportLoaderManager().initLoader(0,args,this);
         }
     }
@@ -82,9 +123,15 @@ public class mainMenu extends AppCompatActivity implements LoaderManager.LoaderC
     @NonNull
     @Override
     public Loader<Bundle> onCreateLoader(int id, @Nullable Bundle args) {
-        Art art = new Art();
-        art.IDArte = args.getInt("id");
-        return new fetchArt(this, art.IDArte);
+        Toast toast = Toast.makeText(this, "Carregando...", Toast.LENGTH_SHORT);
+        toast.show();
+        if (isSearchByName == false) {
+            return new fetchArt(this,"id");
+        }
+        else if (isSearchByName == true){
+            return new fetchArt(this,"name");
+        }
+        return null;
     }
 
     @Override
@@ -92,13 +139,12 @@ public class mainMenu extends AppCompatActivity implements LoaderManager.LoaderC
         Art art = new Art();
         try{
                 Bundle allData = data;
-                if(allData.getString("arts") == null){
+                if(allData.getString("artData") == null){
                     txtError.setVisibility(View.VISIBLE);
                     infos.setVisibility(View.GONE);
                 }
                 else {
-                    JSONArray artsData = new JSONArray(data.getString("arts"));
-                    JSONObject objArt = artsData.getJSONObject(1);
+                    JSONObject objArt = new JSONObject(data.getString("artData"));
                     art.IDArte = objArt.getInt("IDArte");
                     art.NomeArte = objArt.getString("NomeArte");
                     art.NomeArtista = objArt.getString("NomeArtista");
@@ -110,6 +156,9 @@ public class mainMenu extends AppCompatActivity implements LoaderManager.LoaderC
                     addCre.setText(art.NomeArtista);
                     addAno.setText(Integer.toString(art.AnoArte));
                     addEsti.setText(art.EstiloArte);
+
+                    ImageLoader imgLoader = ImageLoader.getInstance();
+                    imgLoader.displayImage(art.UrlArte,imgArt,options);
                 }
             }
         catch (JSONException e) {

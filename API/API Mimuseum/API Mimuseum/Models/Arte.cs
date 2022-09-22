@@ -117,5 +117,15 @@ namespace API_Mimuseum.Models
             command.CommandText = query;
             var executor = command.ExecuteNonQuery();
         }
+        public int CountArts()
+        {
+            int numOfArts;
+            string query = "select count(IDArte) from tbArt";
+            command.CommandText = query;
+            var reader = command.ExecuteReader();
+            reader.Read();
+            numOfArts = int.Parse(reader["count(IDArte)"].ToString());
+            return numOfArts;
+        }
     }
 }
