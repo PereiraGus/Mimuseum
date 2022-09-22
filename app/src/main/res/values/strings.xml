@@ -3,7 +3,7 @@
 
     <!--Menu-->
     <string name="mnMain">Principal</string>
-    <string name="mnGallery">Galeria</string>
+    <string name="mnLoc">Sua localização</string>
     <string name="mnNew">Nova arte</string>
     <string name="mnOut">Sair</string>
 

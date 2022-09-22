@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -22,6 +23,7 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -29,7 +31,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class LocalizacaoActivity extends AppCompatActivity implements BuscarEndereco.OnTaskCompleted {
+public class LocalizacaoActivity extends AppCompatActivity implements BuscarEndereco.OnTaskCompleted, BottomNavigationView.OnNavigationItemSelectedListener {
+
+    BottomNavigationView nav;
 
     public static final String PREFERENCIAS_NAME = "com.example.android.localizacao";
     private static final String TRACKING_LOCATION_KEY = "tracking_location";
@@ -57,6 +61,9 @@ public class LocalizacaoActivity extends AppCompatActivity implements BuscarEnde
         getSupportActionBar().hide();
         setContentView(R.layout.activity_localizacao);
 
+        nav = (BottomNavigationView) findViewById(R.id.bottomNav);
+        nav.setSelectedItemId(R.id.mnLoc);
+        nav.setOnNavigationItemSelectedListener((BottomNavigationView.OnNavigationItemSelectedListener) this);
 
         mLocationButton = findViewById(R.id.btnLocalizacao);
         mLocationTextView = findViewById(R.id.edtxtLocalizacao);
@@ -207,4 +214,26 @@ public class LocalizacaoActivity extends AppCompatActivity implements BuscarEnde
         //Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.mnMain:
+                Intent intentM = new Intent(getApplicationContext(), mainMenu.class);
+                startActivity(intentM);
+                return true;
+            case R.id.mnLoc:
+                Intent intentL = new Intent(getApplicationContext(), LocalizacaoActivity.class);
+                startActivity(intentL);
+                return true;
+            case R.id.mnNew:
+                Intent intentN = new Intent(getApplicationContext(), addArt.class);
+                startActivity(intentN);
+                return true;
+            case R.id.mnOut:
+                Intent intentO = new Intent(getApplicationContext(), signin.class);
+                startActivity(intentO);
+                return true;
+        }
+        return false;
+    }
 }

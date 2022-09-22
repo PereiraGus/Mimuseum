@@ -10,9 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.Bundle;
-import android.view.DisplayCutout;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,11 +25,8 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.Random;
 
 public class mainMenu extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Bundle>, BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -175,9 +170,9 @@ public class mainMenu extends AppCompatActivity implements LoaderManager.LoaderC
         switch (item.getItemId()){
             case R.id.mnMain:
                 return true;
-            case R.id.mnGallery:
-                Intent intentG = new Intent(getApplicationContext(), gallery.class);
-                startActivity(intentG);
+            case R.id.mnLoc:
+                Intent intentL = new Intent(getApplicationContext(), LocalizacaoActivity.class);
+                startActivity(intentL);
                 return true;
             case R.id.mnNew:
                 Intent intentN = new Intent(getApplicationContext(), addArt.class);

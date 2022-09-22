@@ -18,7 +18,7 @@ public class gallery extends AppCompatActivity implements BottomNavigationView.O
         setContentView(R.layout.activity_gallery);
 
         nav = (BottomNavigationView) findViewById(R.id.bottomNav);
-        nav.setSelectedItemId(R.id.mnGallery);
+        nav.setSelectedItemId(R.id.mnLoc);
         nav.setOnNavigationItemSelectedListener((BottomNavigationView.OnNavigationItemSelectedListener) this);
     }
     @Override
@@ -28,7 +28,9 @@ public class gallery extends AppCompatActivity implements BottomNavigationView.O
                 Intent intentM = new Intent(getApplicationContext(), mainMenu.class);
                 startActivity(intentM);
                 return true;
-            case R.id.mnGallery:
+            case R.id.mnLoc:
+                Intent intentL = new Intent(getApplicationContext(), LocalizacaoActivity.class);
+                startActivity(intentL);
                 return true;
             case R.id.mnNew:
                 Intent intentN = new Intent(getApplicationContext(), addArt.class);

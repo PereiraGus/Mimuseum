@@ -36,7 +36,7 @@
 
         <EditText
             android:id="@+id/artSearch"
-            android:layout_width="350dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/sec"
             android:ems="10"
@@ -45,8 +45,8 @@
             android:minHeight="50dp"
             android:outlineAmbientShadowColor="#3C0101"
             android:textColor="@color/sec"
-            android:textColorHint="#633B8EA5"
-            android:textSize="25sp" />
+            android:textColorHint="#3B8EA5"
+            android:textSize="20sp" />
 
         <ImageView
             android:id="@+id/imgArt"

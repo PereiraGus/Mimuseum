@@ -6,9 +6,9 @@
         android:icon="@drawable/ic_baseline_bungalow_24"
         android:title="@string/mnMain" />
     <item
-        android:id="@+id/mnGallery"
-        android:icon="@drawable/ic_baseline_photo_album_24"
-        android:title="@string/mnGallery" />
+        android:id="@+id/mnLoc"
+        android:icon="@drawable/ic_baseline_person_pin_24"
+        android:title="@string/mnLoc" />
     <item
         android:id="@+id/mnNew"
         android:icon="@drawable/ic_baseline_add_photo_alternate_24"
