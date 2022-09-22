@@ -190,4 +190,9 @@ public class mainMenu extends AppCompatActivity implements LoaderManager.LoaderC
         }
         return false;
     }
+    public void TelaGeoLoc(View view){
+        Intent intent = new Intent(getApplicationContext(), LocalizacaoActivity.class);
+        startActivity(intent);
+    }
+
 }

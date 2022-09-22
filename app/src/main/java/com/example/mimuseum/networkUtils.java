@@ -3,7 +3,9 @@ package com.example.mimuseum;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.JsonReader;
 
+import com.google.gson.Gson;
 import com.jayway.jsonpath.JsonPath;
 
 import org.json.JSONArray;
@@ -174,4 +176,208 @@ public class networkUtils {
         }
         return artInfo;
     }*/
+    static void adicionaInfo(addArt addArt){
+        HttpURLConnection urlConnection = null;
+        BufferedReader reader = null;
+        String artJSONString = null;
+        try {
+            Uri builtURI;
+            if(addArt == null){
+                builtURI = Uri.parse(URL_API).buildUpon()
+                        .build();
+            }
+            else {
+                String url1 = URL_API;
+                //Construção da URI de Busca
+                builtURI = Uri.parse(url1).buildUpon()
+                        .build();
+            }
+
+            // Busca o InputStream.
+            InputStream inputStream = urlConnection.getInputStream();
+            // Cria o buffer para o input stream
+            InputStreamReader inputStreamReader =
+                    new InputStreamReader(inputStream, "UTF-8");
+
+            JsonReader jsonReader = new JsonReader(inputStreamReader);
+            jsonReader.beginObject(); // Start processing the JSON object
+            while (jsonReader.hasNext()) { // Loop through all keys
+                String url = jsonReader.nextName(); // Fetch the next key
+                if (url.equals("URL_API")) { // Check if desired key
+                    Gson gson = new Gson();
+                    String artsAdd = gson.toJson(addArt);
+                    // Fetch the value as a String
+                    artsAdd = jsonReader.nextString();
+
+                    // Do something with the value
+                    // ...
+
+                    break; // Break out of the loop
+                } else {
+                    jsonReader.skipValue(); // Skip values of other keys
+                }
+            }
+            // Converte a URI para a URL.
+            URL requestURL = new URL(builtURI.toString());
+            // Abre a conexão de rede
+            urlConnection = (HttpURLConnection) requestURL.openConnection();
+            urlConnection.setRequestMethod("POST");
+            urlConnection.connect();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            // fecha a conexão e o buffer.
+            if (urlConnection != null) {
+                urlConnection.disconnect();
+            }
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+    static void updateInfo(Art art){
+        HttpURLConnection urlConnection = null;
+        BufferedReader reader = null;
+        String atracoesrJSONString = null;
+
+
+
+        try {
+            Uri builtURI;
+            if(art == null){
+                builtURI = Uri.parse(URL_API).buildUpon()
+                        .build();
+            }
+            else {
+                String url1 = URL_API;
+                //Construção da URI de Busca
+                builtURI = Uri.parse(url1).buildUpon()
+                        .build();
+
+
+            }
+
+            // Busca o InputStream.
+            InputStream inputStream = urlConnection.getInputStream();
+            // Cria o buffer para o input stream
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+
+            JsonReader jsonReader = new JsonReader(inputStreamReader);
+            jsonReader.beginObject(); // Start processing the JSON object
+            while (jsonReader.hasNext()) { // Loop through all keys
+                String url = jsonReader.nextName(); // Fetch the next key
+                if (url.equals("URL_API")) { // Check if desired key
+                    Gson gson = new Gson();
+                    String atracoesUpdate = gson.toJson(art);
+                    // Fetch the value as a String
+                    atracoesUpdate = jsonReader.nextString();
+
+
+                    break; // Break out of the loop
+                } else {
+                    jsonReader.skipValue(); // Skip values of other keys
+                }
+            }
+            // Converte a URI para a URL.
+            URL requestURL = new URL(builtURI.toString());
+            // Abre a conexão de rede
+            urlConnection = (HttpURLConnection) requestURL.openConnection();
+            urlConnection.setRequestMethod("SET");
+            urlConnection.connect();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            // fecha a conexão e o buffer.
+            if (urlConnection != null) {
+                urlConnection.disconnect();
+            }
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    static void deleteInfo(String arts){
+        HttpURLConnection urlConnection = null;
+        BufferedReader reader = null;
+        String atracoesJSONString = null;
+
+
+
+        try {
+            Uri builtURI;
+            if(arts == null){
+                builtURI = Uri.parse(URL_API).buildUpon()
+                        .build();
+            }
+            else {
+                String url1 = URL_API;
+                //Construção da URI de Busca
+                builtURI = Uri.parse(url1).buildUpon()
+                        .build();
+
+
+            }
+
+            // Busca o InputStream.
+            InputStream inputStream = urlConnection.getInputStream();
+            // Cria o buffer para o input stream
+            InputStreamReader inputStreamReader =
+                    new InputStreamReader(inputStream, "UTF-8");
+
+            JsonReader jsonReader = new JsonReader(inputStreamReader);
+            jsonReader.beginObject(); // Start processing the JSON object
+            while (jsonReader.hasNext()) { // Loop through all keys
+                String url = jsonReader.nextName(); // Fetch the next key
+                if (url.equals("URL_API")) { // Check if desired key
+                    Gson gson = new Gson();
+                    String atracoesUpdate = gson.toJson(arts);
+                    // Fetch the value as a String
+                    atracoesUpdate = jsonReader.nextString();
+
+                    // Do something with the value
+                    // ...
+
+                    break; // Break out of the loop
+                } else {
+                    jsonReader.skipValue(); // Skip values of other keys
+                }
+            }
+            // Converte a URI para a URL.
+            URL requestURL = new URL(builtURI.toString());
+            // Abre a conexão de rede
+            urlConnection = (HttpURLConnection) requestURL.openConnection();
+            urlConnection.setRequestMethod("DELETE");
+            urlConnection.connect();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            // fecha a conexão e o buffer.
+            if (urlConnection != null) {
+                urlConnection.disconnect();
+            }
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
 }

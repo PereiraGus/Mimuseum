@@ -39,4 +39,18 @@
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
     <string name="app_widget_description">This is an app widget description</string>
+
+    <!--GeoLoc-->
+    <string name="editar">Editar</string>
+    <string name="endereco">"Endereço: %1$s  \n \n Horário: %4$tr"</string>
+    <string name="loading">Carregando…</string>
+    <string name="parar_busca">PARAR BUSCA</string>
+    <string name="iniciar_busca">INICIAR</string>
+    <string name="permissao_recusada">Permissão negada, autorize a aplicação </string>
+    <string name="sem_localizacao">Localização Indisponível</string>
+    <string name="hint_busca">Clique para iniciar a busca</string>
+    <string name="sem_endereco">Endereço indisponível</string>
+    <string name="coordenada_invalida">Coordenadas inválidas</string>
+    <string name="servico_indisponivel">Esse serviço está indisponível</string>
+
 </resources>
