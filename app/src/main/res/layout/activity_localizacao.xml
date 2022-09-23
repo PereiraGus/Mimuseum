@@ -24,31 +24,49 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.103" />
 
+    <EditText
+        android:id="@+id/artSearch"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/sec"
+        android:ems="10"
+        android:hint="@string/hint_busca"
+        android:inputType="textPassword"
+        android:minHeight="50dp"
+        android:outlineAmbientShadowColor="#3C0101"
+        android:textColor="@color/sec"
+        android:textColorHint="#3B8EA5"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/mapWebView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/geoTit" />
+
+    <WebView
+        android:id="@+id/mapWebView"
+        android:layout_width="355dp"
+        android:layout_height="363dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/geoTit" />
+
     <Button
         android:id="@+id/btnLocalizacao"
         android:layout_width="173dp"
         android:layout_height="62dp"
         android:backgroundTint="@color/sec"
+        android:onClick="onClickTest"
         android:text="Localizar"
         android:textSize="15dp"
+        app:icon="@drawable/ic_baseline_control_camera_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.656" />
-
-    <EditText
-        android:id="@+id/edtxtLocalizacao"
-        android:layout_width="347dp"
-        android:layout_height="70dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.361" />
+        app:layout_constraintVertical_bias="0.825" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"

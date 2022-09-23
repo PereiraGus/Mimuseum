@@ -22,93 +22,143 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/artLayout"
-        android:layout_width="match_parent"
+    <EditText
+        android:id="@+id/artSearch"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:textAlignment="center"
-        android:visibility="visible"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/sec"
+        android:ems="10"
+        android:hint="@string/htArtSearch"
+        android:inputType="textPassword"
+        android:minHeight="50dp"
+        android:outlineAmbientShadowColor="#3C0101"
+        android:textColor="@color/sec"
+        android:textColorHint="#3B8EA5"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="fill_parent"
+        android:layout_height="570dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNav"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="-8dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintStart_toStartOf="parent">
 
-        <EditText
-            android:id="@+id/artSearch"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/sec"
-            android:ems="10"
-            android:hint="@string/htArtSearch"
-            android:inputType="textPassword"
-            android:minHeight="50dp"
-            android:outlineAmbientShadowColor="#3C0101"
-            android:textColor="@color/sec"
-            android:textColorHint="#3B8EA5"
-            android:textSize="20sp" />
-
-        <ImageView
-            android:id="@+id/imgArt"
-            android:layout_width="300dp"
-            android:layout_height="325dp"
-            android:layout_marginTop="20dp"
-            android:contentDescription="@string/dfHiArt"
-            tools:srcCompat="@tools:sample/avatars" />
-
-        <TextView
-            android:id="@+id/addTit"
+        <LinearLayout
+            android:id="@+id/artLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-medium"
-            android:textAlignment="inherit"
-            android:textColor="@color/sec"
-            android:textSize="30sp" />
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:textAlignment="center"
+            android:visibility="visible">
 
-        <TextView
-            android:id="@+id/addCre"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="inherit"
-            android:textColor="@color/sec"
-            android:textSize="25sp" />
+            <ImageView
+                android:id="@+id/imgArt"
+                android:layout_width="300dp"
+                android:layout_height="325dp"
+                android:layout_marginTop="20dp"
+                android:contentDescription="@string/dfHiArt"
+                tools:srcCompat="@tools:sample/avatars" />
 
-        <TextView
-            android:id="@+id/addEsti"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="inherit"
-            android:textColor="@color/sec"
-            android:textSize="25sp" />
+            <TextView
+                android:id="@+id/addTit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:textAlignment="inherit"
+                android:textColor="@color/sec"
+                android:textSize="30sp" />
 
-        <TextView
-            android:id="@+id/addAno"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="inherit"
-            android:textColor="@color/sec"
-            android:textSize="25sp" />
+            <TextView
+                android:id="@+id/addCre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="inherit"
+                android:textColor="@color/sec"
+                android:textSize="25sp" />
 
-        <Button
-            android:id="@+id/btnChange"
-            android:layout_width="280dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:backgroundTint="@color/thir"
-            android:onClick="refreshArt"
-            android:paddingVertical="10dp"
-            android:text="@string/artChange"
-            android:textAllCaps="false"
-            android:textColor="@color/back"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:icon="@drawable/dice"
-            app:iconPadding="0dp"
-            app:iconSize="35dp"
-            app:iconTint="@color/back"
-            app:iconTintMode="src_in" />
+            <TextView
+                android:id="@+id/addEsti"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="inherit"
+                android:textColor="@color/sec"
+                android:textSize="25sp" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/addAno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="inherit"
+                android:textColor="@color/sec"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/btnChange"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:backgroundTint="@color/thir"
+                android:onClick="refreshArt"
+                android:paddingVertical="10dp"
+                android:text="@string/artChange"
+                android:textAllCaps="false"
+                android:textColor="@color/back"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:icon="@drawable/dice"
+                app:iconPadding="0dp"
+                app:iconSize="35dp"
+                app:iconTint="@color/back"
+                app:iconTintMode="src_in" />
+
+            <Button
+                android:id="@+id/btnEdit"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:backgroundTint="@color/thir"
+                android:onClick="refreshArt"
+                android:paddingVertical="10dp"
+                android:text="@string/artChange"
+                android:textAllCaps="false"
+                android:textColor="@color/back"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:icon="@drawable/dice"
+                app:iconPadding="0dp"
+                app:iconSize="35dp"
+                app:iconTint="@color/back"
+                app:iconTintMode="src_in" />
+
+            <Button
+                android:id="@+id/btnDelete"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:backgroundTint="@color/thir"
+                android:onClick="refreshArt"
+                android:paddingVertical="10dp"
+                android:text="@string/artChange"
+                android:textAllCaps="false"
+                android:textColor="@color/back"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:icon="@drawable/dice"
+                app:iconPadding="0dp"
+                app:iconSize="35dp"
+                app:iconTint="@color/back"
+                app:iconTintMode="src_in" />
+
+        </LinearLayout>
+    </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"

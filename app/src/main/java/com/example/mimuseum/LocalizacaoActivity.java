@@ -8,9 +8,12 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.Button;
 
 import android.widget.EditText;
@@ -30,6 +33,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URL;
 
 public class LocalizacaoActivity extends AppCompatActivity implements BuscarEndereco.OnTaskCompleted, BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -41,8 +45,13 @@ public class LocalizacaoActivity extends AppCompatActivity implements BuscarEnde
     private static final String LATITUDE_KEY = "latitude";
     private static final String LONGITUDE_KEY = "longitude";
     private static final String LASTDATE_KEY = "data";
+    private static String MAPS_URL = "https://www.google.com.br/maps/@LATITUDE,LONGITUDE,15z";
+    private String MAP_LAT;
+    private String MAP_LONG;
+    private String MAP_ADRESS;
 
     private Button mLocationButton;
+    private WebView mapWebView;
     private TextView mLocationTextView;
     private static final String LASTADRESS_KEY = "adress";
     private FusedLocationProviderClient mFusedLocationClient;
@@ -50,15 +59,9 @@ public class LocalizacaoActivity extends AppCompatActivity implements BuscarEnde
 
     private boolean mTrackingLocation;
 
-    private SharedPreferences mPreferences;
-    private String lastLatitude = "";
-    private String lastLongitude = "";
-    private String lastAdress = "";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
         setContentView(R.layout.activity_localizacao);
 
         nav = (BottomNavigationView) findViewById(R.id.bottomNav);
@@ -67,8 +70,11 @@ public class LocalizacaoActivity extends AppCompatActivity implements BuscarEnde
 
         mLocationButton = findViewById(R.id.btnLocalizacao);
         mLocationTextView = findViewById(R.id.edtxtLocalizacao);
+        mapWebView = (WebView) findViewById(R.id.mapWebView);
 
-        // Inicializa FusedLocationClient.
+        WebSettings webSttgs = mapWebView.getSettings();
+        webSttgs.setJavaScriptEnabled(true);
+
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(
                 this);
 
@@ -77,28 +83,23 @@ public class LocalizacaoActivity extends AppCompatActivity implements BuscarEnde
                     TRACKING_LOCATION_KEY);
         }
 
-        mLocationButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (!mTrackingLocation) {
-                    startTrackingLocation();
-                } else {
-                    stopTrackingLocation();
-                }
-            }
-        });
         mLocationCallback = new LocationCallback() {
             @Override
             public void onLocationResult(LocationResult locationResult) {
-                // If tracking is turned on, reverse geocode into an address
                 if (mTrackingLocation) {
                     new BuscarEndereco(LocalizacaoActivity.this, LocalizacaoActivity.this)
                             .execute(locationResult.getLastLocation());
                 }
             }
         };
+    }
 
+    public void onClickTest(View view) {
+        if (!mTrackingLocation) {
+            startTrackingLocation();
+        } else {
+            stopTrackingLocation();
+        }
     }
 
     private void startTrackingLocation() {
@@ -121,7 +122,6 @@ public class LocalizacaoActivity extends AppCompatActivity implements BuscarEnde
             mLocationTextView.setText(getString(R.string.endereco,
                     getString(R.string.loading), null, null,
                     System.currentTimeMillis()));
-            mLocationButton.setText(R.string.parar_busca);
         }
     }
 
@@ -139,11 +139,6 @@ public class LocalizacaoActivity extends AppCompatActivity implements BuscarEnde
             mLocationButton.setText(R.string.iniciar_busca);
             mLocationTextView.setText(R.string.hint_busca);
         }
-    }
-
-    @Override protected void onSaveInstanceState(Bundle outState) {
-        outState.putBoolean(TRACKING_LOCATION_KEY, mTrackingLocation);
-        super.onSaveInstanceState(outState);
     }
 
     @Override
@@ -167,12 +162,26 @@ public class LocalizacaoActivity extends AppCompatActivity implements BuscarEnde
     @Override
     public void onTaskCompleted(String[] result) {
         if (mTrackingLocation) {
-            // Update the UI
-            lastLatitude = result[1];
-            lastLongitude = result[2];
-            lastAdress = result[0];
+            MAP_LAT = result[1];
+            MAP_LONG = result[2];
+            MAP_ADRESS = result[0];
             mLocationTextView.setText(getString(R.string.endereco,
-                    lastAdress, lastLatitude, lastLongitude, System.currentTimeMillis()));
+                    MAP_ADRESS, MAP_LAT, MAP_LONG, System.currentTimeMillis()));
+            updateMap(MAP_LAT, MAP_LONG);
+            mTrackingLocation = false;
+        }
+    }
+
+    public void updateMap(String lat, String lng)
+    {
+        try {
+            String uri = MAPS_URL.replace("LATITUDE",MAP_LAT);
+            uri = uri.replace("LONGITUDE",MAP_LONG);
+            mapWebView.loadUrl(uri);
+        }
+        catch (Exception exception)
+        {
+
         }
     }
 
@@ -182,7 +191,6 @@ public class LocalizacaoActivity extends AppCompatActivity implements BuscarEnde
         if (mTrackingLocation) {
             stopTrackingLocation();
             mTrackingLocation = true;
-            armazenar(lastLatitude, lastLongitude, lastAdress);
         }
     }
 
@@ -192,26 +200,7 @@ public class LocalizacaoActivity extends AppCompatActivity implements BuscarEnde
             startTrackingLocation();
 
         }
-        recuperar();
         super.onResume();
-    }
-
-    private void armazenar(String latitude, String longitude, String lastAdress) {
-        SharedPreferences.Editor preferencesEditor = mPreferences.edit();
-        preferencesEditor.putString(LATITUDE_KEY, latitude);
-        preferencesEditor.putString(LONGITUDE_KEY, longitude);
-        preferencesEditor.putLong(LASTDATE_KEY, System.currentTimeMillis());
-        preferencesEditor.putString(LASTADRESS_KEY, lastAdress);
-        preferencesEditor.apply();
-    }
-
-    private void recuperar() {
-        lastLatitude = mPreferences.getString(LATITUDE_KEY, "");
-        lastLongitude = mPreferences.getString(LONGITUDE_KEY, "");
-        long time = mPreferences.getLong(LASTDATE_KEY, 0);
-        lastAdress = mPreferences.getString(LASTADRESS_KEY, "");
-        //Toast.makeText(this, getString(R.string.endereco, lastAdress, lastLatitude, lastLongitude, time),
-        //Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -134,7 +134,7 @@ public class mainMenu extends AppCompatActivity implements LoaderManager.LoaderC
         Art art = new Art();
         try{
                 Bundle allData = data;
-                if(allData.getString("artData") == null){
+                if(allData == null){
                     txtError.setVisibility(View.VISIBLE);
                     infos.setVisibility(View.GONE);
                 }
