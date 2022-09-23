@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.net.Uri;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,8 +19,6 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Button;
 
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,23 +29,14 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
+import java.util.Calendar;
+import java.util.Date;
 
-public class LocalizacaoActivity extends AppCompatActivity implements BuscarEndereco.OnTaskCompleted, BottomNavigationView.OnNavigationItemSelectedListener {
+public class LocalizacaoActivity extends AppCompatActivity implements BuscarEndereco.OnTaskCompleted, BottomNavigationView.OnNavigationItemSelectedListener, SensorEventListener {
 
     BottomNavigationView nav;
 
-    public static final String PREFERENCIAS_NAME = "com.example.android.localizacao";
-    private static final String TRACKING_LOCATION_KEY = "tracking_location";
     private static final int REQUEST_LOCATION_PERMISSION = 1;
-    private static final String LATITUDE_KEY = "latitude";
-    private static final String LONGITUDE_KEY = "longitude";
-    private static final String LASTDATE_KEY = "data";
     private static String MAPS_URL = "https://www.google.com.br/maps/@LATITUDE,LONGITUDE,15z";
     private String MAP_LAT;
     private String MAP_LONG;
@@ -53,7 +45,12 @@ public class LocalizacaoActivity extends AppCompatActivity implements BuscarEnde
     private Button mLocationButton;
     private WebView mapWebView;
     private TextView mLocationTextView;
-    private static final String LASTADRESS_KEY = "adress";
+    private TextView txtTemp;
+    private TextView txtTime;
+    private Sensor tempSns;
+    private SensorManager sensorMng;
+    private Boolean isSensorAvailable;
+    private String temperature = null;
     private FusedLocationProviderClient mFusedLocationClient;
     private LocationCallback mLocationCallback;
 
@@ -69,19 +66,26 @@ public class LocalizacaoActivity extends AppCompatActivity implements BuscarEnde
         nav.setOnNavigationItemSelectedListener((BottomNavigationView.OnNavigationItemSelectedListener) this);
 
         mLocationButton = findViewById(R.id.btnLocalizacao);
-        mLocationTextView = findViewById(R.id.edtxtLocalizacao);
+        mLocationTextView = findViewById(R.id.artSearch);
+        txtTemp = findViewById(R.id.locTemp);
+        txtTime = findViewById(R.id.locTime);
         mapWebView = (WebView) findViewById(R.id.mapWebView);
+
+        sensorMng = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        if(sensorMng.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE) != null){
+            tempSns = sensorMng.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
+            isSensorAvailable = true;
+        }
+        else { isSensorAvailable = false; }
+        if(isSensorAvailable){
+            sensorMng.registerListener(this,tempSns,SensorManager.SENSOR_DELAY_NORMAL);
+        }
 
         WebSettings webSttgs = mapWebView.getSettings();
         webSttgs.setJavaScriptEnabled(true);
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(
                 this);
-
-        if (savedInstanceState != null) {
-            mTrackingLocation = savedInstanceState.getBoolean(
-                    TRACKING_LOCATION_KEY);
-        }
 
         mLocationCallback = new LocationCallback() {
             @Override
@@ -94,7 +98,18 @@ public class LocalizacaoActivity extends AppCompatActivity implements BuscarEnde
         };
     }
 
-    public void onClickTest(View view) {
+    @Override
+    public void onSensorChanged(SensorEvent sensorEvent) {
+        temperature = String.valueOf(sensorEvent.values[0]);
+        txtTemp.setText(temperature + "°C");
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i) {
+
+    }
+
+    public void onClick(View view) {
         if (!mTrackingLocation) {
             startTrackingLocation();
         } else {
@@ -165,8 +180,12 @@ public class LocalizacaoActivity extends AppCompatActivity implements BuscarEnde
             MAP_LAT = result[1];
             MAP_LONG = result[2];
             MAP_ADRESS = result[0];
-            mLocationTextView.setText(getString(R.string.endereco,
-                    MAP_ADRESS, MAP_LAT, MAP_LONG, System.currentTimeMillis()));
+            mLocationTextView.setText(MAP_ADRESS);
+            String crrntTime = Calendar.getInstance().get(Calendar.HOUR_OF_DAY) +
+                    ":" +
+                    Calendar.getInstance().get(Calendar.MINUTE);
+            txtTime.setText(crrntTime);
+            txtTemp.setText(temperature);
             updateMap(MAP_LAT, MAP_LONG);
             mTrackingLocation = false;
         }
@@ -188,6 +207,9 @@ public class LocalizacaoActivity extends AppCompatActivity implements BuscarEnde
     @Override
     protected void onPause() {
         super.onPause();
+        if(isSensorAvailable){
+            sensorMng.unregisterListener(this);
+        }
         if (mTrackingLocation) {
             stopTrackingLocation();
             mTrackingLocation = true;
@@ -198,7 +220,6 @@ public class LocalizacaoActivity extends AppCompatActivity implements BuscarEnde
     protected void onResume() {
         if (mTrackingLocation) {
             startTrackingLocation();
-
         }
         super.onResume();
     }
