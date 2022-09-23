@@ -22,7 +22,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.103" />
+        app:layout_constraintVertical_bias="0.023" />
 
     <EditText
         android:id="@+id/artSearch"
@@ -31,6 +31,7 @@
         android:layout_marginTop="9dp"
         android:layout_marginBottom="20dp"
         android:backgroundTint="@color/sec"
+        android:editable="false"
         android:ems="10"
         android:hint="@string/hint_busca"
         android:inputType="textPassword"
@@ -41,8 +42,38 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/mapWebView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/geoTit" />
+        app:layout_constraintTop_toBottomOf="@+id/geoTit"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/locTemp"
+        android:layout_width="65dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="120dp"
+        android:textAlignment="inherit"
+        android:textColor="@color/sec"
+        android:textSize="25sp"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="30°C" />
+
+    <TextView
+        android:id="@+id/locTime"
+        android:layout_width="65dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="105dp"
+        android:layout_marginTop="120dp"
+        android:textAlignment="inherit"
+        android:textColor="@color/sec"
+        android:textSize="25sp"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="12:00" />
 
     <WebView
         android:id="@+id/mapWebView"

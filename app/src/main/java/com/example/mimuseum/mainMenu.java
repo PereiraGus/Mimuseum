@@ -25,12 +25,13 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class mainMenu extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Bundle>, BottomNavigationView.OnNavigationItemSelectedListener {
 
-    Boolean isSearchByName = null;
+    Boolean isSearchByName = false;
     String query = null;
 
     private LinearLayout infos;
@@ -54,7 +55,9 @@ public class mainMenu extends AppCompatActivity implements LoaderManager.LoaderC
         setContentView(R.layout.activity_main_menu);
 
         Intent checkIfSearch = getIntent();
-        isSearchByName = checkIfSearch.getBooleanExtra("searchByName",false);
+        int searchFlag = checkIfSearch.getIntExtra("searchByName",0);
+        if(searchFlag == 0) {isSearchByName = false;}
+        if(searchFlag == 1) {isSearchByName = true;}
         query = checkIfSearch.getStringExtra("query");
 
         infos = (LinearLayout) findViewById(R.id.artLayout);
@@ -71,8 +74,8 @@ public class mainMenu extends AppCompatActivity implements LoaderManager.LoaderC
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
                         (keyCode == KeyEvent.KEYCODE_ENTER)) {
                     Intent searchByName = new Intent(getApplicationContext(),mainMenu.class);
-                    searchByName.putExtra("searchByName",true);
-                    searchByName.putExtra("query",editSearch.getText());
+                    searchByName.putExtra("searchByName",1);
+                    searchByName.putExtra("query",editSearch.getText().toString());
                     startActivity(searchByName);
                 }
                 return false;
@@ -118,13 +121,13 @@ public class mainMenu extends AppCompatActivity implements LoaderManager.LoaderC
     @NonNull
     @Override
     public Loader<Bundle> onCreateLoader(int id, @Nullable Bundle args) {
-        Toast toast = Toast.makeText(this, "Carregando...", Toast.LENGTH_SHORT);
+        Toast toast = Toast.makeText(this, "Carregando...", Toast.LENGTH_LONG);
         toast.show();
         if (isSearchByName == false) {
-            return new fetchArt(this,"id");
+            return new fetchArt(this,"id",null);
         }
         else if (isSearchByName == true){
-            return new fetchArt(this,"name");
+            return new fetchArt(this,"name",query);
         }
         return null;
     }
@@ -139,21 +142,49 @@ public class mainMenu extends AppCompatActivity implements LoaderManager.LoaderC
                     infos.setVisibility(View.GONE);
                 }
                 else {
-                    JSONObject objArt = new JSONObject(data.getString("artData"));
-                    art.IDArte = objArt.getInt("IDArte");
-                    art.NomeArte = objArt.getString("NomeArte");
-                    art.NomeArtista = objArt.getString("NomeArtista");
-                    art.AnoArte = objArt.getInt("AnoArte");
-                    art.EstiloArte = objArt.getString("EstiloArte");
-                    art.UrlArte = objArt.getString("UrlArte");
+                    int i = 0;
+                    JSONObject objArt = null;
+                    boolean isArray = allData.getBoolean("isArray");
+                    if(isArray == false) {
+                        objArt = new JSONObject(data.getString("artData"));
+                        art.IDArte = objArt.getInt("IDArte");
+                        art.NomeArte = objArt.getString("NomeArte");
+                        art.NomeArtista = objArt.getString("NomeArtista");
+                        art.AnoArte = objArt.getInt("AnoArte");
+                        art.EstiloArte = objArt.getString("EstiloArte");
+                        art.UrlArte = objArt.getString("UrlArte");
+                    }
+                    if(isArray == true){
+                        JSONArray arrayArts = new JSONArray(data.getString("artData"));
+                        while(arrayArts.length() > i) {
+                            objArt = arrayArts.getJSONObject(i);
+                            art.IDArte = objArt.getInt("IDArte");
+                            art.NomeArte = objArt.getString("NomeArte");
+                            art.NomeArtista = objArt.getString("NomeArtista");
+                            art.AnoArte = objArt.getInt("AnoArte");
+                            art.EstiloArte = objArt.getString("EstiloArte");
+                            art.UrlArte = objArt.getString("UrlArte");
+                            i = i + 1;
+                        }
+                    }
+                    if(objArt == null)
+                    {
+                        imgArt.setImageResource(R.drawable.noart);
+                    }
+                    else {
+                        addTit.setVisibility(View.VISIBLE);
+                        addCre.setVisibility(View.VISIBLE);
+                        addAno.setVisibility(View.VISIBLE);
+                        addEsti.setVisibility(View.VISIBLE);
 
-                    addTit.setText(art.NomeArte);
-                    addCre.setText(art.NomeArtista);
-                    addAno.setText(Integer.toString(art.AnoArte));
-                    addEsti.setText(art.EstiloArte);
+                        addTit.setText(art.NomeArte);
+                        addCre.setText(art.NomeArtista);
+                        addAno.setText(Integer.toString(art.AnoArte));
+                        addEsti.setText(art.EstiloArte);
 
-                    ImageLoader imgLoader = ImageLoader.getInstance();
-                    imgLoader.displayImage(art.UrlArte,imgArt,options);
+                        ImageLoader imgLoader = ImageLoader.getInstance();
+                        imgLoader.displayImage(art.UrlArte, imgArt, options);
+                    }
                 }
             }
         catch (JSONException e) {
@@ -185,9 +216,4 @@ public class mainMenu extends AppCompatActivity implements LoaderManager.LoaderC
         }
         return false;
     }
-    public void TelaGeoLoc(View view){
-        Intent intent = new Intent(getApplicationContext(), LocalizacaoActivity.class);
-        startActivity(intent);
-    }
-
 }
