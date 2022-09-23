@@ -66,7 +66,6 @@ public class mainMenu extends AppCompatActivity implements LoaderManager.LoaderC
         addCre = (TextView) findViewById(R.id.addCre);
         addEsti = (TextView) findViewById(R.id.addEsti);
         addAno = (TextView) findViewById(R.id.addAno);
-        txtError = (TextView) findViewById(R.id.txtError);
         editSearch = (EditText) findViewById(R.id.artSearch);
 
         editSearch.setOnKeyListener(new View.OnKeyListener() {
@@ -138,8 +137,7 @@ public class mainMenu extends AppCompatActivity implements LoaderManager.LoaderC
         try{
                 Bundle allData = data;
                 if(allData == null){
-                    txtError.setVisibility(View.VISIBLE);
-                    infos.setVisibility(View.GONE);
+                    imgArt.setImageResource(R.drawable.server);
                 }
                 else {
                     int i = 0;
