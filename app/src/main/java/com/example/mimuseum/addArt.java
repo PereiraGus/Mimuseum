@@ -34,14 +34,17 @@ public class addArt extends AppCompatActivity {
     public void sendInfos(View view)
     {
         Toast toast = Toast.makeText(this,null,Toast.LENGTH_SHORT);
-
         Art art = new Art();
-        art.NomeArte = txtName.getText().toString();
-        art.NomeArtista = txtArtist.getText().toString();
-        art.EstiloArte = txtStyle.getText().toString();
-        art.AnoArte = Integer.parseInt(txtYear.getText().toString());
-        art.UrlArte = txtUrl.getText().toString();
-
+        try {
+            art.NomeArte = txtName.getText().toString();
+            art.NomeArtista = txtArtist.getText().toString();
+            art.EstiloArte = txtStyle.getText().toString();
+            art.AnoArte = Integer.parseInt(txtYear.getText().toString());
+            art.UrlArte = txtUrl.getText().toString();
+        }
+        catch (Exception exception) {
+            toast.setText("Preencha todos os campos");
+        }
         try{
             networkUtils.addArt(art);
             toast.setText("Arte criada!");
