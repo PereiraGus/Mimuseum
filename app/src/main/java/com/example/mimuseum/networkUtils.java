@@ -3,7 +3,9 @@ package com.example.mimuseum;
 import android.net.Uri;
 import android.os.Bundle;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -119,11 +121,29 @@ public class networkUtils {
     }
     static void addArt(Art art) {
         try {
-            connec = networkUtils.startConnec("PostNewArt", null, null, "POST");
-            connec.setDoOutput(true);
+            HttpURLConnection connec = null;
+            Uri buildURI = Uri.parse(URL_API).buildUpon()
+                    .appendPath("postNewArt")
+                    .build();
+            URL requestUrl = new URL(buildURI.toString());
+            url = buildURI.toString();
+            connec = (HttpURLConnection) requestUrl.openConnection();
 
-            OutputStream outputStream = connec.getOutputStream();
+            //connec = networkUtils.startConnec("postNewArt", null, null, "POST");
+            connec.setRequestMethod("POST");
+            connec.setDoOutput(true);
+            connec.setChunkedStreamingMode(0);
+            connec.setRequestProperty("Content-Type", "application/xwww-form-urlencoded");
+            connec.setRequestProperty("Authorization", "Basic");
+
+            OutputStream outputStream = new DataOutputStream(connec.getOutputStream());
+            String arttest = String.valueOf(art);
+            outputStream.write(Byte.valueOf(String.valueOf(art)));
+
+            int i = 0;
+            connec.setRequestProperty("Authorization", "Basic");
             outputStream.write(Byte.valueOf(art.toString()));
+            outputStream.flush();
             outputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
