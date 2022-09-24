@@ -15,7 +15,7 @@
         android:backgroundTint="@color/sec"
         android:ems="10"
         android:hint="@string/htArtSearch"
-        android:inputType="textPassword"
+        android:inputType="textMultiLine"
         android:minHeight="50dp"
         android:outlineAmbientShadowColor="#3C0101"
         android:textColor="@color/sec"
@@ -50,7 +50,7 @@
                 android:layout_height="325dp"
                 android:layout_marginTop="20dp"
                 android:contentDescription="@string/dfHiArt"
-                tools:srcCompat="@tools:sample/avatars" />
+                tools:srcCompat="@drawable/loading" />
 
             <TextView
                 android:id="@+id/addTit"
@@ -68,8 +68,7 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="inherit"
                 android:textColor="@color/sec"
-                android:textSize="25sp"
-                android:visibility="gone" />
+                android:textSize="25sp" />
 
             <TextView
                 android:id="@+id/addEsti"
@@ -121,6 +120,7 @@
                 android:textColor="@color/back"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                android:visibility="gone"
                 app:icon="@drawable/dice"
                 app:iconPadding="0dp"
                 app:iconSize="35dp"
@@ -140,6 +140,7 @@
                 android:textColor="@color/back"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                android:visibility="gone"
                 app:icon="@drawable/dice"
                 app:iconPadding="0dp"
                 app:iconSize="35dp"

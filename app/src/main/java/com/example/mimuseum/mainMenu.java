@@ -40,7 +40,6 @@ public class mainMenu extends AppCompatActivity implements LoaderManager.LoaderC
     private TextView addCre;
     private TextView addEsti;
     private TextView addAno;
-    private TextView txtError;
     private EditText editSearch;
 
     DisplayImageOptions options = null;

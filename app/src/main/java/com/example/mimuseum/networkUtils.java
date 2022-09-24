@@ -15,7 +15,7 @@ import java.net.URL;
 import java.util.Random;
 
 public class networkUtils {
-    private static final String URL_API = "https://othergreytrail96.conveyor.cloud/api/Arte";
+    private static final String URL_API = "https://largeashbox33.conveyor.cloud/api/Arte";
     private static HttpURLConnection connec;
     private static BufferedReader reader;
     private static String artJSON;
