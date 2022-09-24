@@ -1,0 +1,25 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Widget.Mimuseum.AppWidget.Container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/Theme.Mimuseum.AppWidgetContainer">
+
+
+    <Button
+        android:id="@+id/appwidget_button"
+        style="@style/Widget.Mimuseum.AppWidget.InnerView"
+        android:layout_width="122dp"
+        android:layout_height="74dp"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="@string/appwidget_text"
+        android:gravity="center"
+        android:text="@string/appwidget_text"
+        android:textSize="16sp"
+        android:textStyle="bold|italic" />
+
+
+</RelativeLayout>

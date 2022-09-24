@@ -36,9 +36,7 @@
     <string name="hiLog">Insira seu nome de usuário</string>
     <string name="hiPass">Insira sua senha</string>
     <string name="hiGal">Lista de obras de arte salvas</string>
-    <string name="appwidget_text">EXAMPLE</string>
-    <string name="add_widget">Add widget</string>
-    <string name="app_widget_description">This is an app widget description</string>
+
 
     <!--GeoLoc-->
     <string name="editar">Editar</string>
@@ -53,4 +51,8 @@
     <string name="coordenada_invalida">Coordenadas inválidas</string>
     <string name="servico_indisponivel">Esse serviço está indisponível</string>
 
+    <!--widget-->
+    <string name="appwidget_text">MIMUSEUM</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">Utilize como atalho para executar o mimuseum</string>
 </resources>
